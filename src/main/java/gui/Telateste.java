@@ -1,32 +1,27 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package gui;
 
 import credential.Credential;
 import credential.CredentialDao;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import user.User;
 
 /**
  *
  * @author Caio Veloso &lt;caio.veloso at ifnmg.edu.br&gt;
  */
-public class TelaLogin extends javax.swing.JDialog {
-    
+public class Telateste extends javax.swing.JFrame {
+      
      private String salt = "_123dfertywqsaasq";
-
     /**
-     * Creates new form EditarTarefaNovo
+     * Creates new form Telateste
      */
-    public TelaLogin(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
+    public Telateste() {
         initComponents();
         lblSenhaIncorreta.setVisible(false);
         setLocationRelativeTo(null);
-        
     }
 
     /**
@@ -47,15 +42,11 @@ public class TelaLogin extends javax.swing.JDialog {
         lblSenhaIncorreta = new javax.swing.JLabel();
         txtSenha = new javax.swing.JPasswordField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Autenticação");
-        setModal(true);
-        setResizable(false);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         lblNome.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         lblNome.setText("Usuário:");
 
-        txtUsuario.setText("Peu");
         txtUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtUsuarioActionPerformed(evt);
@@ -85,12 +76,15 @@ public class TelaLogin extends javax.swing.JDialog {
 
         btnCancelar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnCancelar.setText("Cancelar");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
 
         lblSenhaIncorreta.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         lblSenhaIncorreta.setForeground(new java.awt.Color(255, 51, 51));
         lblSenhaIncorreta.setText("Senha Incorreta!");
-
-        txtSenha.setText("123456");
 
         javax.swing.GroupLayout pnlPrincipalLayout = new javax.swing.GroupLayout(pnlPrincipal);
         pnlPrincipal.setLayout(pnlPrincipalLayout);
@@ -105,7 +99,7 @@ public class TelaLogin extends javax.swing.JDialog {
                 .addGroup(pnlPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(txtUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 273, Short.MAX_VALUE)
                     .addComponent(txtSenha))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 85, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(pnlPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnAutenticar, javax.swing.GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE)
                     .addComponent(btnCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -115,9 +109,6 @@ public class TelaLogin extends javax.swing.JDialog {
                 .addComponent(lblSenhaIncorreta, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-
-        pnlPrincipalLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnAutenticar, btnCancelar});
-
         pnlPrincipalLayout.setVerticalGroup(
             pnlPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlPrincipalLayout.createSequentialGroup()
@@ -132,12 +123,10 @@ public class TelaLogin extends javax.swing.JDialog {
                         .addComponent(lblSenha)
                         .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 155, Short.MAX_VALUE)
                 .addComponent(lblSenhaIncorreta)
                 .addContainerGap())
         );
-
-        pnlPrincipalLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnAutenticar, btnCancelar});
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -159,92 +148,80 @@ public class TelaLogin extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnAutenticarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAutenticarActionPerformed
-        // TODO add your handling code here:
-        System.out.println("Autenticar");
-        
-        Credential c1 = new Credential();
-        txtSenha.getText(); // md5 com o salt _123dfertywqsaasq
-        
-        try {
-            c1.setUsername(txtUsuario.getText());
-            c1.setPassword(txtSenha.getText());
-            
-        } catch (Exception ex) {
-            System.out.println("Erro na inserção");
-        }  
-        
-        
-        c1 = new CredentialDao().guiAuthenticate(c1);
-        User credentialAutenticada = new CredentialDao().authenticate(c1);
-        
-        if(credentialAutenticada != null){
-            System.out.println(" >> Autenticado   "  + credentialAutenticada);
-            
-            
-            dispose();
-           // new Administrador(credentialAutenticada).setVisible(true);
-           
-           if("Administrador".equals(credentialAutenticada.getRole().getName())){
-           
-           Administrador janelaPrincipal = new Administrador();
-           janelaPrincipal.setVisible(true);
-          
-           
-           
-
-          
-           
-            }
-           if("Bibliotecario".equals(credentialAutenticada.getRole().getName())){
-               Bibliotecario bibliotecarioTela = new Bibliotecario();
-               bibliotecarioTela.setVisible(true);
-               
-               
-           }
-           if("Leitor".equals(credentialAutenticada.getRole().getName())){
-               Leitor leitorTela = new Leitor();
-               leitorTela.setVisible(true);
-               
-               
-           }
-        }
-        else{
-            System.out.println(" >> Usuário não autenticado");
-            lblSenhaIncorreta.setVisible(true);
-        }
-        
-        
-        
-        txtSenha.setText(null);
-        txtUsuario.requestFocus();
-        txtUsuario.selectAll();
-        
-       
-        
-        
-        
-        
-        
-        
-        
-        
-    }//GEN-LAST:event_btnAutenticarActionPerformed
-
     private void txtUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsuarioActionPerformed
         // TODO add your handling code here:
-      
-    }//GEN-LAST:event_txtUsuarioActionPerformed
 
-    private void btnAutenticarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAutenticarMouseClicked
-        // TODO add your handling code here:
-        
-    }//GEN-LAST:event_btnAutenticarMouseClicked
+    }//GEN-LAST:event_txtUsuarioActionPerformed
 
     private void txtUsuarioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUsuarioKeyPressed
         // TODO add your handling code here:
         lblSenhaIncorreta.setVisible(false);
     }//GEN-LAST:event_txtUsuarioKeyPressed
+
+    private void btnAutenticarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAutenticarMouseClicked
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_btnAutenticarMouseClicked
+
+    private void btnAutenticarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAutenticarActionPerformed
+        // TODO add your handling code here:
+        System.out.println("Autenticar");
+
+        Credential c1 = new Credential();
+        txtSenha.getText(); // md5 com o salt _123dfertywqsaasq
+
+        try {
+            c1.setUsername(txtUsuario.getText());
+            c1.setPassword(txtSenha.getText());
+
+        } catch (Exception ex) {
+            System.out.println("Erro na inserção");
+        }
+
+        c1 = new CredentialDao().guiAuthenticate(c1);
+        User credentialAutenticada = new CredentialDao().authenticate(c1);
+
+        if(credentialAutenticada != null){
+            System.out.println(" >> Autenticado   "  + credentialAutenticada);
+
+            dispose();
+            // new Administrador(credentialAutenticada).setVisible(true);
+
+            if("Administrador".equals(credentialAutenticada.getRole().getName())){
+
+                Administrador janelaPrincipal = new Administrador();
+                janelaPrincipal.setVisible(true);
+
+
+            }
+            if("Bibliotecario".equals(credentialAutenticada.getRole().getName())){
+                Bibliotecario bibliotecarioTela = new Bibliotecario();
+                bibliotecarioTela.setVisible(true);
+
+            }
+            if("Leitor".equals(credentialAutenticada.getRole().getName())){
+                Leitor leitorTela = new Leitor();
+                leitorTela.setVisible(true);
+
+            }
+        }
+        else{
+            System.out.println(" >> Usuário não autenticado");
+            lblSenhaIncorreta.setVisible(true);
+        }
+
+        txtSenha.setText(null);
+        txtUsuario.requestFocus();
+        txtUsuario.selectAll();
+
+    }//GEN-LAST:event_btnAutenticarActionPerformed
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        // TODO add your handling code here:
+        limparCampos();
+        voltarTelaLogin();
+        dispose();
+    }//GEN-LAST:event_btnCancelarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -263,35 +240,37 @@ public class TelaLogin extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TelaLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Telateste.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TelaLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Telateste.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TelaLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Telateste.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TelaLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Telateste.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        //</editor-fold>
-       
-        /* Create and display the dialog */
+
+        /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                TelaLogin dialog = new TelaLogin(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
+                new Telateste().setVisible(true);
             }
         });
-        
     }
- 
+    
+public void voltarTelaLogin() {
+    TelaLogin telaLogin = new TelaLogin((java.awt.Frame) null, true);
+    telaLogin.setVisible(true);
+    dispose(); // Fecha a tela atual
+    
+    txtUsuario.selectAll();
+}
 
-  
+private void limparCampos() {
+        txtSenha.setText("");
+        txtUsuario.requestFocus();
+        txtUsuario.selectAll();
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAutenticar;

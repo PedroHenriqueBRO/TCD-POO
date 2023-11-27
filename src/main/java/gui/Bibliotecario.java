@@ -28,6 +28,12 @@ public class Bibliotecario extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        mnuBibliotecarioLivros = new javax.swing.JMenu();
+        itmBibliotecarioCadastrarLivro = new javax.swing.JMenuItem();
+        itmBibliotecarioEmprestimo = new javax.swing.JMenuItem();
+        mnuBibliotecarioSair = new javax.swing.JMenu();
+        itmBibliotecarioSair = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Bibliotecario");
@@ -40,8 +46,40 @@ public class Bibliotecario extends javax.swing.JFrame {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 288, Short.MAX_VALUE)
+            .addGap(0, 265, Short.MAX_VALUE)
         );
+
+        mnuBibliotecarioLivros.setText("Livros");
+
+        itmBibliotecarioCadastrarLivro.setText("Cadastrar novo livro");
+        mnuBibliotecarioLivros.add(itmBibliotecarioCadastrarLivro);
+
+        itmBibliotecarioEmprestimo.setText("Realizar um empréstimo");
+        itmBibliotecarioEmprestimo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itmBibliotecarioEmprestimoActionPerformed(evt);
+            }
+        });
+        mnuBibliotecarioLivros.add(itmBibliotecarioEmprestimo);
+
+        jMenuBar1.add(mnuBibliotecarioLivros);
+
+        mnuBibliotecarioSair.setText("Sair");
+
+        itmBibliotecarioSair.setText("Fechar programa");
+        itmBibliotecarioSair.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                itmBibliotecarioSairMouseClicked(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                itmBibliotecarioSairMouseReleased(evt);
+            }
+        });
+        mnuBibliotecarioSair.add(itmBibliotecarioSair);
+
+        jMenuBar1.add(mnuBibliotecarioSair);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -62,6 +100,20 @@ public class Bibliotecario extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void itmBibliotecarioEmprestimoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmBibliotecarioEmprestimoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_itmBibliotecarioEmprestimoActionPerformed
+
+    private void itmBibliotecarioSairMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_itmBibliotecarioSairMouseClicked
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_itmBibliotecarioSairMouseClicked
+
+    private void itmBibliotecarioSairMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_itmBibliotecarioSairMouseReleased
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_itmBibliotecarioSairMouseReleased
 
     /**
      * @param args the command line arguments
@@ -99,6 +151,12 @@ public class Bibliotecario extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem itmBibliotecarioCadastrarLivro;
+    private javax.swing.JMenuItem itmBibliotecarioEmprestimo;
+    private javax.swing.JMenuItem itmBibliotecarioSair;
+    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JMenu mnuBibliotecarioLivros;
+    private javax.swing.JMenu mnuBibliotecarioSair;
     // End of variables declaration//GEN-END:variables
 }

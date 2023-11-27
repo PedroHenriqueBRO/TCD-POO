@@ -21,8 +21,11 @@ public class Relacionamentos{
 
     public static void main(String[] args) throws Exception{
         testeA();
-//        testeB();
-//        testeC();
+        testeB();
+        testeC();
+        
+        
+       // testes que foram usados no trabalho passado;
 //        testeD();
 //        testeE();
 //        testeF();
@@ -36,7 +39,7 @@ public class Relacionamentos{
         Long userid=new UserDao().save(usuario);
         usuario.setId(userid);
         //usuario setado
-        Credential credencial=new Credential(userid,"Peu","123456",LocalDate.of(2023, Month.MARCH, 20),true);  
+        Credential credencial=new Credential(userid,"admin","123",LocalDate.of(2023, Month.MARCH, 20),true);  
         Long credencialid=new CredentialDao().save(credencial);
         //credencial setada
         Librarian Bibliotecario=new Librarian(userid,usuario.getName(),usuario.getEmail(),LocalDate.of(2004, Month.MARCH, 20));
@@ -49,7 +52,7 @@ public class Relacionamentos{
          
     }
     public static void testeB() throws Exception{
-        Role Biblio=new Role(null,"Leitor");
+        Role Biblio=new Role(null,"Bibliotecario");
         Long biblioid=new RoleDao().save(Biblio);
         Biblio.setId(biblioid);
         //Role setada
@@ -57,7 +60,7 @@ public class Relacionamentos{
         Long userid=new UserDao().save(usuario);
         usuario.setId(userid);
         //usuario setado
-        Credential credencial=new Credential(userid,"Anaz","12345678",LocalDate.of(2023, Month.MARCH, 20),true);  
+        Credential credencial=new Credential(userid,"biblio1","asdf",LocalDate.of(2023, Month.MARCH, 20),true);  
         Long credencialid=new CredentialDao().save(credencial);
         //credencial setada
         Reader leitor=new Reader(userid,usuario.getName(),usuario.getEmail(),LocalDate.of(2004, Month.MARCH, 23));
@@ -71,13 +74,13 @@ public class Relacionamentos{
     public static void testeC() throws Exception{
         //Teste em baso que voce usou o teste A e B , ja que assim eu vou usar uma role existente para setar esse usuario
         //Role setada
-        Role Biblio=new Role(null,"Bibliotecario");
+        Role Biblio=new Role(null,"Leitor");
         new RoleDao().save(Biblio);
         User usuario=new User(null,"Cecilia Xerxes","Cecilia90@gmail.com",Biblio,LocalDate.of(2004, Month.MARCH, 25));
         Long userid=new UserDao().save(usuario);
         usuario.setId(userid);
         //usuario setado
-        Credential credencial=new Credential(userid,"Cex","123456789",LocalDate.of(2023, Month.MARCH, 23),true);  
+        Credential credencial=new Credential(userid,"leitor1","qwerty",LocalDate.of(2023, Month.MARCH, 23),true);  
         Long credencialid=new CredentialDao().save(credencial);
         //credencial setada
         Reader leitor=new Reader(userid,usuario.getName(),usuario.getEmail(),LocalDate.of(2004, Month.MARCH, 25));

@@ -41,9 +41,16 @@ public class Administrador extends javax.swing.JFrame {
         mnuEditar = new javax.swing.JMenuItem();
         mnuExcluir = new javax.swing.JMenuItem();
         pnlPrincipal = new javax.swing.JPanel();
-        lblSenha = new javax.swing.JLabel();
-        txtSenha = new javax.swing.JTextField();
-        btnAutenticar = new javax.swing.JButton();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        mnuAdministradoradmin = new javax.swing.JMenu();
+        mnuAdministradorNovoCadastro = new javax.swing.JMenuItem();
+        mnuAdministradorCredenciasCadastradas = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
+        mnuAdministradorEmprestimos = new javax.swing.JMenu();
+        mnuAdministradorHistoricoEmprestimos = new javax.swing.JMenuItem();
+        mnuAdministradorUpdateEmprestimos = new javax.swing.JMenuItem();
+        mnuAdministradorSair = new javax.swing.JMenu();
+        mnuAdministradorFechar = new javax.swing.JMenuItem();
 
         mnuEditar.setMnemonic('e');
         mnuEditar.setText("Editar");
@@ -58,40 +65,63 @@ public class Administrador extends javax.swing.JFrame {
         });
         popUpMenu.add(mnuExcluir);
 
-        setTitle("Administrador");
+        setTitle("Administrador\n");
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         pnlPrincipal.setName(""); // NOI18N
-
-        lblSenha.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        lblSenha.setText("teste");
-
-        btnAutenticar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        btnAutenticar.setText("Autenticar");
 
         javax.swing.GroupLayout pnlPrincipalLayout = new javax.swing.GroupLayout(pnlPrincipal);
         pnlPrincipal.setLayout(pnlPrincipalLayout);
         pnlPrincipalLayout.setHorizontalGroup(
             pnlPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlPrincipalLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lblSenha)
-                .addGap(24, 24, 24)
-                .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 99, Short.MAX_VALUE)
-                .addComponent(btnAutenticar, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(37, 37, 37))
+            .addGap(0, 600, Short.MAX_VALUE)
         );
         pnlPrincipalLayout.setVerticalGroup(
             pnlPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlPrincipalLayout.createSequentialGroup()
-                .addGap(93, 93, 93)
-                .addGroup(pnlPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnAutenticar)
-                    .addComponent(lblSenha))
-                .addContainerGap(215, Short.MAX_VALUE))
+            .addGap(0, 317, Short.MAX_VALUE)
         );
+
+        mnuAdministradoradmin.setText("Administrador");
+
+        mnuAdministradorNovoCadastro.setText("Realizar novo cadastro");
+        mnuAdministradoradmin.add(mnuAdministradorNovoCadastro);
+
+        mnuAdministradorCredenciasCadastradas.setText("Credencias Cadastradas");
+        mnuAdministradoradmin.add(mnuAdministradorCredenciasCadastradas);
+
+        jMenuItem3.setText("jMenuItem3");
+        mnuAdministradoradmin.add(jMenuItem3);
+
+        jMenuBar1.add(mnuAdministradoradmin);
+
+        mnuAdministradorEmprestimos.setText("Emprestimos");
+
+        mnuAdministradorHistoricoEmprestimos.setText("Todos os emprestimos");
+        mnuAdministradorEmprestimos.add(mnuAdministradorHistoricoEmprestimos);
+
+        mnuAdministradorUpdateEmprestimos.setText("Update de emprestimo");
+        mnuAdministradorEmprestimos.add(mnuAdministradorUpdateEmprestimos);
+
+        jMenuBar1.add(mnuAdministradorEmprestimos);
+
+        mnuAdministradorSair.setText("Sair");
+
+        mnuAdministradorFechar.setText("Fechar programa");
+        mnuAdministradorFechar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                mnuAdministradorFecharMouseReleased(evt);
+            }
+        });
+        mnuAdministradorSair.add(mnuAdministradorFechar);
+
+        jMenuBar1.add(mnuAdministradorSair);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -116,6 +146,21 @@ public class Administrador extends javax.swing.JFrame {
     private void mnuExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuExcluirActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_mnuExcluirActionPerformed
+
+    private void mnuAdministradorFecharMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnuAdministradorFecharMouseReleased
+        // TODO add your handling code here:
+      dispose();
+      
+
+      
+    }//GEN-LAST:event_mnuAdministradorFecharMouseReleased
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        dispose();
+        Telateste newTela = new Telateste();
+        newTela.setVisible(true);  
+ 
+    }//GEN-LAST:event_formWindowClosing
 
     /**
      * @param args the command line arguments
@@ -154,13 +199,20 @@ public class Administrador extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAutenticar;
-    private javax.swing.JLabel lblSenha;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem mnuAdministradorCredenciasCadastradas;
+    private javax.swing.JMenu mnuAdministradorEmprestimos;
+    private javax.swing.JMenuItem mnuAdministradorFechar;
+    private javax.swing.JMenuItem mnuAdministradorHistoricoEmprestimos;
+    private javax.swing.JMenuItem mnuAdministradorNovoCadastro;
+    private javax.swing.JMenu mnuAdministradorSair;
+    private javax.swing.JMenuItem mnuAdministradorUpdateEmprestimos;
+    private javax.swing.JMenu mnuAdministradoradmin;
     private javax.swing.JMenuItem mnuEditar;
     private javax.swing.JMenuItem mnuExcluir;
     private javax.swing.JPanel pnlPrincipal;
     private javax.swing.JPopupMenu popUpMenu;
-    private javax.swing.JTextField txtSenha;
     // End of variables declaration//GEN-END:variables
 
 }
