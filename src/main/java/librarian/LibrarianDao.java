@@ -26,6 +26,7 @@ import user.User;
 import user.UserDao;
 
 
+
 public class LibrarianDao extends Dao<Librarian> {
     
     public static final String TABLE = "librarian";
@@ -124,6 +125,5 @@ public List<Librarian> extractObjects(ResultSet resultSet) {
        
    }
   }
-
   
 }

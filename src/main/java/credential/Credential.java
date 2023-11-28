@@ -6,10 +6,11 @@ package credential;
 
 import entity.Entity;
 import java.time.LocalDate;
+import user.User;
 
 /**
  *
- * @author Caio Veloso &lt;caio.veloso at ifnmg.edu.br&gt;
+ * @author Pedro Henrique
  */
 public class Credential extends Entity{
     
@@ -17,8 +18,7 @@ public class Credential extends Entity{
     private String password;
     private LocalDate lastAcess;
     private boolean enabled;
-    private Long user_id;
-    private boolean admin;
+    private User user;
     public Credential(){
         
     }
@@ -28,8 +28,7 @@ public class Credential extends Entity{
         setPassword(password);
         setLastAcess(lastAcess); 
         setEnabled(enabled);
-        setUser_id(id);
-       
+        
     }
     //<editor-fold defaultstate="collapsed" desc="comment">
     public String getUsername() {
@@ -70,12 +69,12 @@ public class Credential extends Entity{
         this.enabled = enabled;
     }
 
-    public Long getUser_id() {
-        return user_id;
+  public User getUser() {
+        return user;
     }
 
-    public void setUser_id(Long user_id) {
-        this.user_id = user_id;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     
@@ -83,8 +82,9 @@ public class Credential extends Entity{
 
     @Override
     public String toString() {
-        return "Credential{" + "username=" + username + ", password=" + password + ", lastAcess=" + lastAcess + ", enabled=" + enabled + ", user_id=" + user_id + ", admin=" + admin + '}';
+        return "Credential{" + "username=" + username + ", password=" + password + ", lastAcess=" + lastAcess + ", enabled=" + enabled + ", user=" + user + '}';
     }
 
+    
 
 }

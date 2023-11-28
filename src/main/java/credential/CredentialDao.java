@@ -4,7 +4,7 @@
  */
 package credential;
 
-import java.sql.PreparedStatement;
+ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -24,14 +24,13 @@ import user.UserDao;
 public class CredentialDao extends Dao<Credential> {
     
     public static final String TABLE = "credential";
-    public String getAuthenticateStatment(){
-        return "select * from credential where username=? and password=? ";
-    }
     
     public String getNamePassword(){
         return "SELECT * from credential where username = ? and password = md5(?)";
     }
-    
+    public String getAuthenticateStatment(){
+        return "select * from credential where username=? and password=? ";
+    }
     @Override
     public String getSaveStatment() {
         return "insert into " + TABLE + "(id,username, password, lastAcess, enabled,user_id) values(?,?, md5(?), ?, ?,?)";
@@ -65,8 +64,7 @@ public class CredentialDao extends Dao<Credential> {
         pstmt.setString(3, salt);
         pstmt.setObject(4, e.getLastAcess());
         pstmt.setBoolean(5, e.isEnabled());
-        pstmt.setLong(6, e.getUser_id());
-       // psmt.setBoolean(7,e.getAdmin());
+        pstmt.setLong(6, e.getId());
    
         if (e.getId() != null) {
             pstmt.setLong(1, e.getId());
@@ -90,7 +88,7 @@ public class CredentialDao extends Dao<Credential> {
             credential.setPassword(resultSet.getString("password"));
             credential.setLastAcess( resultSet.getObject("lastAcess", LocalDate.class));
             credential.setEnabled(resultSet.getBoolean("enabled"));
-            credential.setUser_id(resultSet.getLong("user_id"));
+            credential.setUser(new UserDao().findById(resultSet.getLong("user_id")));
         }catch (Exception ex) {
             Logger.getLogger(CredentialDao.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -111,7 +109,7 @@ public List<Credential> extractObjects(ResultSet resultSet) {
             credential.setPassword(resultSet.getString("password"));
             credential.setLastAcess(resultSet.getObject("lastAcess", LocalDate.class));
             credential.setEnabled(resultSet.getBoolean("enabled"));
-            credential.setUser_id(resultSet.getLong("user_id"));
+            credential.setUser(new UserDao().findById(resultSet.getLong("user_id")));
             credentialList.add(credential);
         }
     } catch (Exception ex) {
@@ -148,6 +146,7 @@ public User authenticate(Credential e){
         return null;    
 }
   
+
 
  public Credential guiAuthenticate(Credential e){
     

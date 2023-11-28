@@ -8,14 +8,48 @@ package gui;
  *
  * @author Caio Veloso &lt;caio.veloso at ifnmg.edu.br&gt;
  */
-public class Leitor extends javax.swing.JFrame {
+public class TelaPrincipal extends javax.swing.JFrame {
+    
 
+   public TelaPrincipal(){
+       initComponents();
+       setLocationRelativeTo(null);
+   }
     /**
-     * Creates new form Leitor
+     * Creates new form TelaPrincipal
      */
-    public Leitor() {
+    public TelaPrincipal(String nameRole) {
         initComponents();
         setLocationRelativeTo(null);
+        
+        
+        
+        System.out.println(">> " + nameRole);
+        
+        
+        if("Administrador".equals(nameRole)){
+            System.out.println("chegou ADMIN");
+
+        }
+        if("Leitor".equals(nameRole)){
+            
+            System.out.println("CHEGOU LEITOR");
+            itmCadastrarNovoLivro.setVisible(false);
+            itmCadastrarNovoUsuario.setVisible(false);
+            mnu1Administrador.setVisible(false);
+            itmEmprestimo.setVisible(false);
+            
+            
+        }
+        if("Bibliotecario".equals(nameRole)){
+            
+            System.out.println("CHEGOU BIBLIOTECARIO");
+            itmCadastrarNovoUsuario.setVisible(false);
+            mnu1Administrador.setVisible(false);
+            itmAutorizarEmprestimos.setVisible(false);
+            itmHistoricoEmprestimos.setVisible(false);
+            
+        }
     }
 
     /**
@@ -29,19 +63,18 @@ public class Leitor extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
-        mnuLeitorLivros = new javax.swing.JMenu();
-        itemLeitorLivros = new javax.swing.JMenuItem();
-        itmLeitorMeusEmprestimos = new javax.swing.JMenuItem();
-        mnuLeitorHistorico = new javax.swing.JMenuItem();
-        mnuLeitorSair = new javax.swing.JMenu();
-        itmLeitorExit = new javax.swing.JMenuItem();
+        mnu1Administrador = new javax.swing.JMenu();
+        itmCadastrarNovoUsuario = new javax.swing.JMenuItem();
+        mnuLivros = new javax.swing.JMenu();
+        itmCadastrarNovoLivro = new javax.swing.JMenuItem();
+        itmEmprestimo = new javax.swing.JMenuItem();
+        itmAutorizarEmprestimos = new javax.swing.JMenuItem();
+        itmHistoricoEmprestimos = new javax.swing.JMenuItem();
+        mnuSair = new javax.swing.JMenu();
+        itmFecharPrograma = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Leitor");
         addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowClosed(java.awt.event.WindowEvent evt) {
-                formWindowClosed(evt);
-            }
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 formWindowClosing(evt);
             }
@@ -58,35 +91,45 @@ public class Leitor extends javax.swing.JFrame {
             .addGap(0, 265, Short.MAX_VALUE)
         );
 
-        mnuLeitorLivros.setText("Livros");
+        mnu1Administrador.setText("Administrador");
 
-        itemLeitorLivros.setText("Livros");
-        itemLeitorLivros.addActionListener(new java.awt.event.ActionListener() {
+        itmCadastrarNovoUsuario.setText("Cadastrar novo usuário");
+        mnu1Administrador.add(itmCadastrarNovoUsuario);
+
+        jMenuBar1.add(mnu1Administrador);
+
+        mnuLivros.setText("Livros");
+
+        itmCadastrarNovoLivro.setText("Cadastrar novo livro");
+        mnuLivros.add(itmCadastrarNovoLivro);
+
+        itmEmprestimo.setText("Realizar novo empréstimo");
+        mnuLivros.add(itmEmprestimo);
+
+        itmAutorizarEmprestimos.setText("Autorizar empréstimo");
+        itmAutorizarEmprestimos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                itemLeitorLivrosActionPerformed(evt);
+                itmAutorizarEmprestimosActionPerformed(evt);
             }
         });
-        mnuLeitorLivros.add(itemLeitorLivros);
+        mnuLivros.add(itmAutorizarEmprestimos);
 
-        itmLeitorMeusEmprestimos.setText("Meus emprestímos");
-        mnuLeitorLivros.add(itmLeitorMeusEmprestimos);
+        itmHistoricoEmprestimos.setText("Histórico de Emprestimos");
+        mnuLivros.add(itmHistoricoEmprestimos);
 
-        mnuLeitorHistorico.setText("Histórico de empréstimos");
-        mnuLeitorLivros.add(mnuLeitorHistorico);
+        jMenuBar1.add(mnuLivros);
 
-        jMenuBar1.add(mnuLeitorLivros);
+        mnuSair.setText("Sair");
 
-        mnuLeitorSair.setText("Sair");
-
-        itmLeitorExit.setText("Fechar programa");
-        itmLeitorExit.addMouseListener(new java.awt.event.MouseAdapter() {
+        itmFecharPrograma.setText("Fechar");
+        itmFecharPrograma.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
-                itmLeitorExitMouseReleased(evt);
+                itmFecharProgramaMouseReleased(evt);
             }
         });
-        mnuLeitorSair.add(itmLeitorExit);
+        mnuSair.add(itmFecharPrograma);
 
-        jMenuBar1.add(mnuLeitorSair);
+        jMenuBar1.add(mnuSair);
 
         setJMenuBar(jMenuBar1);
 
@@ -110,29 +153,21 @@ public class Leitor extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void itemLeitorLivrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemLeitorLivrosActionPerformed
+    private void itmAutorizarEmprestimosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmAutorizarEmprestimosActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_itemLeitorLivrosActionPerformed
+    }//GEN-LAST:event_itmAutorizarEmprestimosActionPerformed
 
-    private void itmLeitorExitMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_itmLeitorExitMouseReleased
+    private void itmFecharProgramaMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_itmFecharProgramaMouseReleased
         // TODO add your handling code here:
-        dispose();
-        Telateste newTela = new Telateste();
+         dispose();
+        TelaAutenticacao newTela = new TelaAutenticacao();
         newTela.setVisible(true);
-    }//GEN-LAST:event_itmLeitorExitMouseReleased
-
-    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
-        // TODO add your handling code here:
-        dispose();
-        Telateste newTela = new Telateste();
-        newTela.setVisible(true);
-        
-    }//GEN-LAST:event_formWindowClosed
+    }//GEN-LAST:event_itmFecharProgramaMouseReleased
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         // TODO add your handling code here:
-        dispose();
-        Telateste newTela = new Telateste();
+         dispose();
+        TelaAutenticacao newTela = new TelaAutenticacao();
         newTela.setVisible(true);
     }//GEN-LAST:event_formWindowClosing
 
@@ -153,32 +188,35 @@ public class Leitor extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Leitor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Leitor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Leitor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Leitor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Leitor().setVisible(true);
+                new TelaPrincipal().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenuItem itemLeitorLivros;
-    private javax.swing.JMenuItem itmLeitorExit;
-    private javax.swing.JMenuItem itmLeitorMeusEmprestimos;
+    private javax.swing.JMenuItem itmAutorizarEmprestimos;
+    private javax.swing.JMenuItem itmCadastrarNovoLivro;
+    private javax.swing.JMenuItem itmCadastrarNovoUsuario;
+    private javax.swing.JMenuItem itmEmprestimo;
+    private javax.swing.JMenuItem itmFecharPrograma;
+    private javax.swing.JMenuItem itmHistoricoEmprestimos;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JMenuItem mnuLeitorHistorico;
-    private javax.swing.JMenu mnuLeitorLivros;
-    private javax.swing.JMenu mnuLeitorSair;
+    private javax.swing.JMenu mnu1Administrador;
+    private javax.swing.JMenu mnuLivros;
+    private javax.swing.JMenu mnuSair;
     // End of variables declaration//GEN-END:variables
 }

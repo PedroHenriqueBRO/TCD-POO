@@ -23,7 +23,7 @@ import user.UserDao;
 
 /**
  *
- * @author Caio Veloso &lt;caio.veloso at ifnmg.edu.br&gt;
+ * @author Pedro Henrique;
  */
 public class ReaderDao extends Dao<Reader>{
 

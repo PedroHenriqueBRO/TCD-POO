@@ -5,6 +5,7 @@
 package user;
 
 
+import credential.CredentialDao;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -14,17 +15,16 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import repository.Dao;
-import role.Role;
 import role.RoleDao;
 
 
 /**
  *
- * @author Caio Veloso &lt;caio.veloso at ifnmg.edu.br&gt;
+ * @author Pedro Henrique;
  */
 
 public class UserDao extends Dao<User> {
-    public static final String TABLE="user";
+      public static final String TABLE="user";
     
      @Override
     public String getSaveStatment() {
@@ -76,7 +76,7 @@ public class UserDao extends Dao<User> {
             usuario.setName(resultSet.getString("name"));
             usuario.setEmail(resultSet.getString("email"));
             usuario.setBirthdate(resultSet.getObject("birthdate", LocalDate.class));
-            usuario.setRole(new RoleDao().findById(resultSet.getLong("role_id"))) ;
+            usuario.setRole(new RoleDao().findById((resultSet.getLong("role_id"))));            
         }catch (Exception ex) {
             Logger.getLogger(UserDao.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -96,7 +96,7 @@ public List<User> extractObjects(ResultSet resultSet) {
             user.setName(resultSet.getString("name"));
             user.setEmail(resultSet.getString("email"));
             user.setBirthdate(resultSet.getObject("birthdate", LocalDate.class));
-            user.setRole(new RoleDao().findById(resultSet.getLong("role_id"))) ;
+            user.setRole(new RoleDao().findById((resultSet.getLong("role_id"))));
             UserList.add(user);
         }
     } catch (Exception ex) {
@@ -106,4 +106,4 @@ public List<User> extractObjects(ResultSet resultSet) {
     return UserList;
 }
 }
-
+  

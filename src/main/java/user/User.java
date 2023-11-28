@@ -4,25 +4,17 @@
  */
 package user;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import repository.Dao;
+import credential.Credential;
 import entity.Entity;
+import java.time.LocalDate;
 import role.Role;
-
 
 /**
  *
- * @author Caio Veloso &lt;caio.veloso at ifnmg.edu.br&gt;
+ * @author xtron
  */
 public class User extends Entity{
- private String name;
+    private String name;
     private String email;
     private LocalDate birthdate;
     private Role role;
@@ -31,11 +23,10 @@ public class User extends Entity{
     public User(){
         
     }
-    public User(Long id,String name,String email,Role role,LocalDate birthdate) throws Exception{
+    public User(Long id,String name,String email,LocalDate birthdate) throws Exception{
         setId(id);
         setName(name);
         setEmail(email);
-        setRole(role);
         setBirthdate(birthdate);
     }
 
@@ -79,21 +70,10 @@ public class User extends Entity{
 
     @Override
     public String toString() {
-        return "User{" + "name=" + name + ", email=" + email + ", birthdate=" + birthdate + ", role=" + role + '}';
+        return "User{" + "name=" + name + ", email=" + email + ", birthdate=" + birthdate + ", role=" + role+'}';
     }
 
    
 
     
 }
-
-
-     
-   
-    
-    
-    
-     
-     
-     
-
