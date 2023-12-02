@@ -56,6 +56,7 @@ public class TelaAutenticacao extends javax.swing.JFrame {
         lblNome.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         lblNome.setText("Usuário:");
 
+        txtUsuario.setText("admin");
         txtUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtUsuarioActionPerformed(evt);
@@ -95,6 +96,7 @@ public class TelaAutenticacao extends javax.swing.JFrame {
         lblSenhaIncorreta.setForeground(new java.awt.Color(255, 51, 51));
         lblSenhaIncorreta.setText("Senha Incorreta!");
 
+        txtSenha.setText("123");
         txtSenha.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 txtSenhaMouseReleased(evt);
@@ -214,8 +216,10 @@ public class TelaAutenticacao extends javax.swing.JFrame {
                 
                 
                 TelaPrincipal telaAdmin = new TelaPrincipal(credentialAutenticada.getRole().getName());
+                telaAdmin.setNameRole(credentialAutenticada.getRole().getName());
                 telaAdmin.setTitle("SISTEMA  [ " + c1.getUsername() + "]");
                 telaAdmin.setVisible(true);
+                
 
             }
             if("Bibliotecario".equals(credentialAutenticada.getRole().getName())){

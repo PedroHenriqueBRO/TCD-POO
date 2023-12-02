@@ -13,6 +13,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Cadastrar novo usu&#xe1;rio"/>
               </Properties>
+              <Events>
+                <EventHandler event="mouseReleased" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="itmCadastrarNovoUsuarioMouseReleased"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>
@@ -25,17 +28,24 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Cadastrar novo livro"/>
               </Properties>
+              <Events>
+                <EventHandler event="mouseReleased" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="itmCadastrarNovoLivroMouseReleased"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="itmEmprestimo">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Realizar novo empr&#xe9;stimo"/>
               </Properties>
+              <Events>
+                <EventHandler event="mouseReleased" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="itmEmprestimoMouseReleased"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="itmAutorizarEmprestimos">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Autorizar empr&#xe9;stimo"/>
               </Properties>
               <Events>
+                <EventHandler event="mouseReleased" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="itmAutorizarEmprestimosMouseReleased"/>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="itmAutorizarEmprestimosActionPerformed"/>
               </Events>
             </MenuItem>
@@ -43,6 +53,24 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Hist&#xf3;rico de Emprestimos"/>
               </Properties>
+              <Events>
+                <EventHandler event="mouseReleased" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="itmHistoricoEmprestimosMouseReleased"/>
+              </Events>
+            </MenuItem>
+          </SubComponents>
+        </Menu>
+        <Menu class="javax.swing.JMenu" name="mnuAjuda">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Ajuda"/>
+          </Properties>
+          <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="itmSobre">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Sobre"/>
+              </Properties>
+              <Events>
+                <EventHandler event="mouseReleased" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="itmSobreMouseReleased"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>
