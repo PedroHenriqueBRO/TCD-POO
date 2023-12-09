@@ -22,12 +22,11 @@ public class Credential extends Entity{
     public Credential(){
         
     }
-    public Credential(Long id,String username, String password, LocalDate lastAcess, boolean enabled) throws Exception {
+    public Credential(Long id,String username, String password) throws Exception {
         setId(id);
         setUsername(username);
         setPassword(password);
-        setLastAcess(lastAcess); 
-        setEnabled(enabled);
+        setEnabled(true);
         
     }
     //<editor-fold defaultstate="collapsed" desc="comment">

@@ -4,17 +4,56 @@
  */
 package gui;
 
+
+import Emprestimo.Emprestimo;
+import Emprestimo.EmprestimoDao;
+import book.Book;
+import book.BookDao;
+import credential.Credential;
+import credential.CredentialDao;
+import java.time.LocalDate;
+import java.util.List;
+import reader.ReaderDao;
+import user.User;
+import user.UserDao;
+
 /**
  *
  * @author Caio Veloso &lt;caio.veloso at ifnmg.edu.br&gt;
  */
 public class TelaRealizarNovoEmprestimo extends javax.swing.JFrame {
-
+ private String nameRole;
+ 
     /**
      * Creates new form TelaRealizarNovoCadastro
      */
     public TelaRealizarNovoEmprestimo() {
         initComponents();
+    }
+    public TelaRealizarNovoEmprestimo(String nameRole) {
+        this.nameRole=nameRole;
+        initComponents();
+        List<Book> nome1=new BookDao().findAll();
+        setLocationRelativeTo(null);
+        String[] strings = new String[100];
+        
+        
+        int cont=nome1.size();
+        for(int i=0;i<cont;i++){
+            strings[i]=nome1.get(i).getNomelivro();
+        }
+        
+    lstLivrosDisponiveis.setModel(new javax.swing.AbstractListModel<String>() {
+    
+    
+    
+    
+    
+    public int getSize() { return strings.length ; }
+    public String getElementAt(int i) { return strings[i]; }
+});
+    
+jScrollPane2.setViewportView(lstLivrosDisponiveis);
     }
 
     /**
@@ -34,9 +73,13 @@ public class TelaRealizarNovoEmprestimo extends javax.swing.JFrame {
         btnAutorizar = new javax.swing.JButton();
         lblLivro2 = new javax.swing.JLabel();
         txtNome = new javax.swing.JTextField();
+        lblLivrosDisponiveis = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        lstLivrosDisponiveis = new javax.swing.JList<>();
+        btnCancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Cadastro Novo Usuário");
+        setTitle("Novo Empréstimo");
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 formWindowClosing(evt);
@@ -51,9 +94,38 @@ public class TelaRealizarNovoEmprestimo extends javax.swing.JFrame {
 
         btnAutorizar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnAutorizar.setText("Autenticar");
+        btnAutorizar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                btnAutorizarMouseReleased(evt);
+            }
+        });
 
         lblLivro2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         lblLivro2.setText("Nome do Livro:");
+
+        txtNome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNomeActionPerformed(evt);
+            }
+        });
+
+        lblLivrosDisponiveis.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lblLivrosDisponiveis.setText("Livros Disponíveis :");
+
+        lstLivrosDisponiveis.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane2.setViewportView(lstLivrosDisponiveis);
+
+        btnCancelar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btnCancelar.setText("Cancelar");
+        btnCancelar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                btnCancelarMouseReleased(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -62,19 +134,27 @@ public class TelaRealizarNovoEmprestimo extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblLivro1)
-                    .addComponent(lblSenha)
-                    .addComponent(lblLivro2))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE)
-                    .addComponent(txtSenha)
-                    .addComponent(txtNome))
-                .addContainerGap(106, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnAutorizar, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(14, 14, 14))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblLivro1)
+                            .addComponent(lblSenha)
+                            .addComponent(lblLivro2))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE)
+                            .addComponent(txtSenha)
+                            .addComponent(txtNome))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnAutorizar, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(15, 15, 15))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 391, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(lblLivrosDisponiveis, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(202, 202, 202)
+                                .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 15, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -87,13 +167,23 @@ public class TelaRealizarNovoEmprestimo extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblSenha)
                     .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(24, 24, 24)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblLivro2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 90, Short.MAX_VALUE)
-                .addComponent(btnAutorizar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(51, 51, 51))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblLivro2))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblLivrosDisponiveis)
+                        .addGap(18, 18, 18))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(41, 41, 41)
+                        .addComponent(btnAutorizar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -110,7 +200,7 @@ public class TelaRealizarNovoEmprestimo extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(70, 70, 70))
         );
 
         pack();
@@ -118,11 +208,62 @@ public class TelaRealizarNovoEmprestimo extends javax.swing.JFrame {
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         dispose();
-        TelaPrincipal newTela = new TelaPrincipal();
+        TelaPrincipal newTela = new TelaPrincipal(nameRole);
         newTela.setVisible(true);
-        
+        lstLivrosDisponiveis = new javax.swing.JList<>();
+
+
     }//GEN-LAST:event_formWindowClosing
 
+    private void btnCancelarMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarMouseReleased
+        // TODO add your handling code here:
+         dispose();
+        TelaPrincipal newTela = new TelaPrincipal(nameRole);
+        newTela.setVisible(true);
+        newTela.setTitle(nameRole);
+    }//GEN-LAST:event_btnCancelarMouseReleased
+
+    private void txtNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNomeActionPerformed
+
+    private void btnAutorizarMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAutorizarMouseReleased
+        // TODO add your handling code here:
+        Credential c1 = new Credential();
+        txtSenha.getText(); // md5 com o salt _123dfertywqsaasq
+
+        try {
+            c1.setUsername(txtUsuario.getText());
+            c1.setPassword(txtSenha.getText());
+            c1 = new CredentialDao().guiAuthenticate(c1);
+            User r = new CredentialDao().authenticate(c1);
+            System.out.println(">>"+r);
+            if(r!=null){
+            
+            LocalDate data=LocalDate.now();
+           
+            Emprestimo novo=new Emprestimo(null,txtNome.getText(),data,data.plusDays(5L));
+           
+           String name=novo.getNomelivro();
+            for(Book b:new BookDao().findAll()){
+                if(b.getNomelivro().equals(name)){
+                   novo.setId(b.getId());
+                   novo.setLeitor(new ReaderDao().findById(r.getId()));
+                   new EmprestimoDao().save(novo);
+                }
+            }
+            
+        }
+
+        } catch (Exception ex) {
+            System.out.println("Erro na inserção");
+        }
+
+        
+        
+    }//GEN-LAST:event_btnAutorizarMouseReleased
+
+    
     /**
      * @param args the command line arguments
      */
@@ -161,10 +302,14 @@ public class TelaRealizarNovoEmprestimo extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAutorizar;
+    private javax.swing.JButton btnCancelar;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblLivro1;
     private javax.swing.JLabel lblLivro2;
+    private javax.swing.JLabel lblLivrosDisponiveis;
     private javax.swing.JLabel lblSenha;
+    private javax.swing.JList<String> lstLivrosDisponiveis;
     private javax.swing.JTextField txtNome;
     private javax.swing.JTextField txtSenha;
     private javax.swing.JTextField txtUsuario;

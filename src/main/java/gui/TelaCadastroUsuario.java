@@ -4,18 +4,43 @@
  */
 package gui;
 
+import credential.Credential;
+import credential.CredentialDao;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import role.Role;
+import role.RoleDao;
+import user.User;
+import user.UserDao;
+
 /**
  *
  * @author Caio Veloso &lt;caio.veloso at ifnmg.edu.br&gt;
  */
 public class TelaCadastroUsuario extends javax.swing.JFrame {
 
+    
+    
+    private String nameRole;
+    private Long id;
+  
+    
     /**
-     * Creates new form TelaCadastroUsuario
+     * 
+     * 
+     * Creates new form TelaCadatstroUsuario
      */
     public TelaCadastroUsuario() {
         initComponents();
         setLocationRelativeTo(null);
+        lblErroCadastro.setVisible(false);
+    }
+    public TelaCadastroUsuario(String nameRole) {
+        
+        initComponents();
+        this.nameRole=nameRole;
+        setLocationRelativeTo(null);
+        lblErroCadastro.setVisible(false);
     }
 
     /**
@@ -34,7 +59,7 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
         lblDataNascimento = new javax.swing.JLabel();
         txtNome = new javax.swing.JTextField();
         txtEmail = new javax.swing.JTextField();
-        txtDatanNascimento = new javax.swing.JTextField();
+        txtDataNascimento = new javax.swing.JTextField();
         lblFormat = new javax.swing.JLabel();
         lblUsuario = new javax.swing.JLabel();
         lblSenha = new javax.swing.JLabel();
@@ -44,7 +69,8 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
         btnBibliotecario = new javax.swing.JRadioButton();
         btnLeitor = new javax.swing.JRadioButton();
         btnCancelar = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnSalvar = new javax.swing.JButton();
+        lblErroCadastro = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -62,14 +88,36 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
         lblDataNascimento.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         lblDataNascimento.setText("Data de nascimento:");
 
-        txtDatanNascimento.addActionListener(new java.awt.event.ActionListener() {
+        txtNome.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                txtNomeMouseReleased(evt);
+            }
+        });
+        txtNome.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtNomeKeyPressed(evt);
+            }
+        });
+
+        txtEmail.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                txtEmailMouseReleased(evt);
+            }
+        });
+
+        txtDataNascimento.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                txtDataNascimentoMouseReleased(evt);
+            }
+        });
+        txtDataNascimento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtDatanNascimentoActionPerformed(evt);
+                txtDataNascimentoActionPerformed(evt);
             }
         });
 
         lblFormat.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        lblFormat.setText("Formato: (ano/mes/dia)");
+        lblFormat.setText("Formato: (ano-mes-dia)");
 
         lblUsuario.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         lblUsuario.setText("Username:");
@@ -91,6 +139,11 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
 
         btnGroupRole.add(btnAdministrador);
         btnAdministrador.setText("Administrador");
+        btnAdministrador.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                btnAdministradorMouseReleased(evt);
+            }
+        });
         btnAdministrador.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAdministradorActionPerformed(evt);
@@ -99,9 +152,19 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
 
         btnGroupRole.add(btnBibliotecario);
         btnBibliotecario.setText("Bibliotecário");
+        btnBibliotecario.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                btnBibliotecarioMouseReleased(evt);
+            }
+        });
 
         btnGroupRole.add(btnLeitor);
         btnLeitor.setText("Leitor");
+        btnLeitor.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                btnLeitorMouseReleased(evt);
+            }
+        });
 
         btnCancelar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnCancelar.setText("Cancelar");
@@ -111,8 +174,17 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jButton2.setText("Salvar");
+        btnSalvar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btnSalvar.setText("Salvar");
+        btnSalvar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                btnSalvarMouseReleased(evt);
+            }
+        });
+
+        lblErroCadastro.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lblErroCadastro.setForeground(new java.awt.Color(255, 0, 0));
+        lblErroCadastro.setText("ERRO NO CADASTRO !");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -120,44 +192,50 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                            .addGap(22, 22, 22)
+                            .addComponent(btnAdministrador)
+                            .addGap(18, 18, 18)
+                            .addComponent(btnBibliotecario)
+                            .addGap(18, 18, 18)
+                            .addComponent(btnLeitor)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                            .addGap(14, 14, 14)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(lblDataNascimento)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(txtDataNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(lblFormat))
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(lblNome)
+                                        .addComponent(lblEmail))
+                                    .addGap(27, 27, 27)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 385, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 385, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(12, 12, 12)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblUsuario)
-                            .addComponent(lblSenha))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                .addGap(22, 22, 22)
-                                .addComponent(btnAdministrador)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnBibliotecario)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnLeitor)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                .addGap(14, 14, 14)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(12, 12, 12)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(lblDataNascimento)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(txtDatanNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(lblFormat))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(lblNome)
-                                            .addComponent(lblEmail))
-                                        .addGap(27, 27, 27)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 385, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 385, javax.swing.GroupLayout.PREFERRED_SIZE))))))))
+                                    .addComponent(lblUsuario)
+                                    .addComponent(lblSenha))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(166, 166, 166))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(lblErroCadastro, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(84, 84, 84)))
+                        .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(18, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -174,7 +252,7 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
                 .addGap(10, 10, 10)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblFormat)
-                    .addComponent(txtDatanNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtDataNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblDataNascimento))
                 .addGap(73, 73, 73)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -185,7 +263,9 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
                     .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblSenha))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
-                .addComponent(jButton2)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnSalvar)
+                    .addComponent(lblErroCadastro))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAdministrador)
@@ -215,9 +295,11 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtDatanNascimentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDatanNascimentoActionPerformed
+    private void txtDataNascimentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDataNascimentoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtDatanNascimentoActionPerformed
+        
+        
+    }//GEN-LAST:event_txtDataNascimentoActionPerformed
 
     private void txtUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsernameActionPerformed
         // TODO add your handling code here:
@@ -234,17 +316,84 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         // TODO add your handling code here:
         dispose();
-        TelaPrincipal newTela = new TelaPrincipal();
+        TelaPrincipal newTela = new TelaPrincipal(nameRole);
         newTela.setVisible(true);
     }//GEN-LAST:event_formWindowClosing
 
     private void btnCancelarMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarMouseReleased
         // TODO add your handling code here:
         dispose();
-        TelaPrincipal newTela = new TelaPrincipal();
+        TelaPrincipal newTela = new TelaPrincipal(nameRole);
         newTela.setVisible(true);
     }//GEN-LAST:event_btnCancelarMouseReleased
 
+    private void btnSalvarMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalvarMouseReleased
+        // TODO add your handling code here:
+        try{
+ 
+           DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+           LocalDate localDate = LocalDate.parse(txtDataNascimento.getText(), formatter);
+            
+           User user1 = new User(null,txtNome.getText(),txtEmail.getText(),localDate);
+           user1.setRole(new RoleDao().findById(id));
+          
+           Long id2 = new UserDao().save(user1);
+           user1.setId(id2);
+           
+           Credential c1 = new Credential(id2,txtUsername.getText(),txtSenha.getText());
+           
+           new CredentialDao().save(c1);
+           dispose();
+          TelaPrincipal newTela = new TelaPrincipal(nameRole);
+          newTela.setVisible(true);
+        }
+        catch(Exception e){
+            lblErroCadastro.setVisible(true);
+            
+        }
+        
+    }//GEN-LAST:event_btnSalvarMouseReleased
+
+    private void btnAdministradorMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAdministradorMouseReleased
+        // TODO add your handling code here:
+        this.id=1L;
+        
+        
+    }//GEN-LAST:event_btnAdministradorMouseReleased
+
+    private void txtNomeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNomeKeyPressed
+        // TODO add your handling code here:
+        lblErroCadastro.setVisible(false);
+        
+    }//GEN-LAST:event_txtNomeKeyPressed
+
+    private void txtNomeMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtNomeMouseReleased
+        // TODO add your handling code here:
+        lblErroCadastro.setVisible(false);
+    }//GEN-LAST:event_txtNomeMouseReleased
+
+    private void txtEmailMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtEmailMouseReleased
+        // TODO add your handling code here:
+        lblErroCadastro.setVisible(false);
+    }//GEN-LAST:event_txtEmailMouseReleased
+
+    private void txtDataNascimentoMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtDataNascimentoMouseReleased
+        // TODO add your handling code here:
+        lblErroCadastro.setVisible(false);
+    }//GEN-LAST:event_txtDataNascimentoMouseReleased
+
+    private void btnBibliotecarioMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBibliotecarioMouseReleased
+        // TODO add your handling code here:
+        this.id=3L;
+    }//GEN-LAST:event_btnBibliotecarioMouseReleased
+
+    private void btnLeitorMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLeitorMouseReleased
+        // TODO add your handling code here:
+        this.id=2L;
+    }//GEN-LAST:event_btnLeitorMouseReleased
+
+   
+   
     /**
      * @param args the command line arguments
      */
@@ -286,15 +435,16 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
     private javax.swing.JButton btnCancelar;
     private javax.swing.ButtonGroup btnGroupRole;
     private javax.swing.JRadioButton btnLeitor;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton btnSalvar;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblDataNascimento;
     private javax.swing.JLabel lblEmail;
+    private javax.swing.JLabel lblErroCadastro;
     private javax.swing.JLabel lblFormat;
     private javax.swing.JLabel lblNome;
     private javax.swing.JLabel lblSenha;
     private javax.swing.JLabel lblUsuario;
-    private javax.swing.JTextField txtDatanNascimento;
+    private javax.swing.JTextField txtDataNascimento;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtNome;
     private javax.swing.JTextField txtSenha;

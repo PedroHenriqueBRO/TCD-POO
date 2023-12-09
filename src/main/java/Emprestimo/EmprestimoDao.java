@@ -4,10 +4,112 @@
  */
 package Emprestimo;
 
-/**
- *
- * @author Caio Veloso &lt;caio.veloso at ifnmg.edu.br&gt;
- */
-public class EmprestimoDao {
+import book.Book;
+import credential.Credential;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import reader.ReaderDao;
+import repository.Dao;
+import role.RoleDao;
+import user.User;
+
+
+public class EmprestimoDao extends Dao<Emprestimo> {
     
+      public static final String TABLE="emprestimo";
+     @Override
+    public String getSaveStatment() {
+        return "insert into " + TABLE + "(id,nomelivro,id_leitor,datadeemprestimo,entrega,autenticado) values(?,?,?,?,?,?)";
+    }
+
+    @Override
+    public String getUpdateStatment() {
+        return " update "+ TABLE + " set nomelivro = ?, id_leitor = ?,datadeemprestimo = ?,entrega = ?,,autenticado = ? , where id = ?";
+    }
+
+    @Override
+    public String getFindByIdStatment() {
+        return "select id,nomelivro,id_leitor,datadeemprestimo,entrega,autenticado" + " from "+TABLE+" where id = ?"; 
+    }
+
+    @Override
+    public String getFindAllStatment() {
+        return "select id,nomelivro,id_leitor,datadeemprestimo,entrega,autenticado" + " from " + TABLE;
+    }
+
+    @Override
+    public String getDeleteStatment() {
+         return "Delete from " + TABLE + " where id = ?";
+    }
+@Override
+    public void composeSaveOrUpdateStatement(PreparedStatement pstmt, Emprestimo e) {
+    try {
+        pstmt.setString(2, e.getNomelivro());
+        pstmt.setLong(3, e.getLeitor().getId());
+        pstmt.setObject(4, e.getDataEmprestimo());
+        pstmt.setObject(5, e.getDataDevolução());
+        pstmt.setBoolean(6, e.isAutenticado());
+        if (e.getId() != null) {
+            pstmt.setLong(1, e.getId());
+        }
+    } catch (SQLException ex) {
+        Logger.getLogger(EmprestimoDao.class.getName()).log(Level.SEVERE, null, ex);
+    }
 }
+
+    @Override
+    public Emprestimo extractObject(ResultSet resultSet) {
+
+        Emprestimo livro = null;
+
+        try {
+            
+            livro = new Emprestimo();
+            livro.setId(resultSet.getLong("id"));
+            livro.setNomelivro(resultSet.getString("nomelivro"));
+            livro.setLeitor(new ReaderDao().findById(resultSet.getLong("id_leitor")));
+            livro.setDataDevolução(resultSet.getObject("entrega", LocalDate.class));
+            livro.setAutenticado(resultSet.getBoolean("autenticado"));
+            livro.setDataEmprestimo(resultSet.getObject("datadeemprestimo", LocalDate.class));
+        }catch (Exception ex) {
+            Logger.getLogger(EmprestimoDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return livro;
+    }
+
+
+    @Override
+public List<Emprestimo> extractObjects(ResultSet resultSet) {
+    List<Emprestimo> EmprestimoList = new ArrayList<>();
+
+    try {
+        while (resultSet.next()) {
+            
+            Emprestimo livro = new Emprestimo(); 
+           livro.setId(resultSet.getLong("id"));
+            livro.setNomelivro(resultSet.getString("nomelivro"));
+            livro.setLeitor(new ReaderDao().findById(resultSet.getLong("id_leitor")));
+            livro.setDataDevolução(resultSet.getObject("entrega", LocalDate.class));
+            livro.setAutenticado(resultSet.getBoolean("autenticado"));
+            livro.setDataEmprestimo(resultSet.getObject("datadeemprestimo", LocalDate.class));     
+            
+            EmprestimoList.add(livro);
+            
+        }
+    } catch (Exception ex) {
+            Logger.getLogger(EmprestimoDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    return EmprestimoList;
+}
+}
+  
+
+

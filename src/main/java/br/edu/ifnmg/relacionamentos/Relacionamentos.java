@@ -36,7 +36,7 @@ public class Relacionamentos {
         
         //usuario setado
         
-        Credential credencial=new Credential(usuario.getId(),"admin","123",LocalDate.of(2023, Month.MARCH, 20),true);  
+        Credential credencial=new Credential(usuario.getId(),"admin","123");  
         
         credencial.setUser(usuario);
         Long credencialid=new CredentialDao().save(credencial);
@@ -60,7 +60,7 @@ public class Relacionamentos {
         Long userid=new UserDao().save(usuario);
         usuario.setId(userid);
         //usuario setado
-        Credential credencial=new Credential(userid,"leitor1","qwerty",LocalDate.of(2023, Month.MARCH, 20),true); 
+        Credential credencial=new Credential(userid,"leitor1","qwerty"); 
         Long credencialid=new CredentialDao().save(credencial);
         //credencial setada
         Reader leitor=new Reader(userid,usuario.getName(),usuario.getEmail(),LocalDate.of(2004, Month.MARCH, 23));
@@ -82,7 +82,7 @@ public class Relacionamentos {
         Long userid=new UserDao().save(usuario);
         usuario.setId(userid);
         //usuario setado
-        Credential credencial=new Credential(userid,"biblio1","asdf",LocalDate.of(2023, Month.MARCH, 23),true); 
+        Credential credencial=new Credential(userid,"biblio1","asdf"); 
         Long credencialid=new CredentialDao().save(credencial);
         //credencial setada
         Reader leitor=new Reader(userid,usuario.getName(),usuario.getEmail(),LocalDate.of(2004, Month.MARCH, 25));
@@ -118,7 +118,7 @@ public class Relacionamentos {
         }
         }
         
-        Credential credencial2=new Credential(null,"Anaa","d7b2c8f91fbcb3584f18d3d8dbe2da05",LocalDate.of(2023, Month.MARCH, 02),true);
+        Credential credencial2=new Credential(null,"Anaa","d7b2c8f91fbcb3584f18d3d8dbe2da05");
         User usuario2=buscacredencial.authenticate(credencial2);
         System.out.println(">> "+ usuario2);
         try{

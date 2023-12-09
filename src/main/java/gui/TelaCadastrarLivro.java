@@ -4,18 +4,36 @@
  */
 package gui;
 
+import book.Book;
+import book.BookDao;
+import java.math.BigDecimal;
+
 /**
  *
  * @author Caio Veloso &lt;caio.veloso at ifnmg.edu.br&gt;
  */
 public class TelaCadastrarLivro extends javax.swing.JFrame {
 
+    
+    
+    private String nameRole;
     /**
      * Creates new form TelaCadastrarLivro
      */
     public TelaCadastrarLivro() {
         initComponents();
         setLocationRelativeTo(null);
+    }
+    public TelaCadastrarLivro(String nameRole) {
+        
+        
+        initComponents();
+        this.nameRole=nameRole;
+        setLocationRelativeTo(null);
+        
+        
+        
+        
     }
 
     /**
@@ -32,7 +50,7 @@ public class TelaCadastrarLivro extends javax.swing.JFrame {
         lblAutor = new javax.swing.JLabel();
         lblQuantidade = new javax.swing.JLabel();
         txtNome = new javax.swing.JTextField();
-        txtNome1 = new javax.swing.JTextField();
+        txtQuantExemplar = new javax.swing.JTextField();
         txtNome2 = new javax.swing.JTextField();
         txtCancelar = new javax.swing.JButton();
         btnCadastrar1 = new javax.swing.JButton();
@@ -85,7 +103,7 @@ public class TelaCadastrarLivro extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(lblQuantidade)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtNome1, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtQuantExemplar, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 23, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -120,7 +138,7 @@ public class TelaCadastrarLivro extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblQuantidade)
-                    .addComponent(txtNome1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtQuantExemplar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 99, Short.MAX_VALUE)
                 .addComponent(txtCancelar)
                 .addGap(23, 23, 23))
@@ -153,17 +171,23 @@ public class TelaCadastrarLivro extends javax.swing.JFrame {
 
     private void txtCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCancelarActionPerformed
         // TODO add your handling code here:
+        dispose();
+        TelaPrincipal newTela = new TelaPrincipal(nameRole);
+        newTela.setVisible(true);
     }//GEN-LAST:event_txtCancelarActionPerformed
 
     private void btnCadastrar1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCadastrar1MouseReleased
         // TODO add your handling code here:
-       
+        BigDecimal Conversao = new BigDecimal(txtQuantExemplar.getText());
+        
+        Book livro=new Book(null,txtNome.getText(),txtNome2.getText(),Conversao);
+        new BookDao().save(livro); 
     }//GEN-LAST:event_btnCadastrar1MouseReleased
 
     private void txtCancelarMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCancelarMouseReleased
         // TODO add your handling code here:
         dispose();
-        TelaPrincipal newTela = new TelaPrincipal();
+        TelaPrincipal newTela = new TelaPrincipal(nameRole);
         newTela.setVisible(true);
         
     }//GEN-LAST:event_txtCancelarMouseReleased
@@ -171,7 +195,7 @@ public class TelaCadastrarLivro extends javax.swing.JFrame {
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         // TODO add your handling code here:
         dispose();
-        TelaPrincipal newTela = new TelaPrincipal();
+        TelaPrincipal newTela = new TelaPrincipal(nameRole);
         newTela.setVisible(true);
        
     }//GEN-LAST:event_formWindowClosing
@@ -219,7 +243,7 @@ public class TelaCadastrarLivro extends javax.swing.JFrame {
     private javax.swing.JLabel lblQuantidade;
     private javax.swing.JButton txtCancelar;
     private javax.swing.JTextField txtNome;
-    private javax.swing.JTextField txtNome1;
     private javax.swing.JTextField txtNome2;
+    private javax.swing.JTextField txtQuantExemplar;
     // End of variables declaration//GEN-END:variables
 }

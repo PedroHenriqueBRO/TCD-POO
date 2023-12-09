@@ -20,6 +20,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
      * Creates new form TelaPrincipal
      */
     public TelaPrincipal(String nameRole) {
+        this.nameRole=nameRole;
         initComponents();
         setLocationRelativeTo(null);
         
@@ -75,6 +76,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         mnu1Administrador = new javax.swing.JMenu();
         itmCadastrarNovoUsuario = new javax.swing.JMenuItem();
+        mnuConsultarUsuarios = new javax.swing.JMenuItem();
         mnuLivros = new javax.swing.JMenu();
         itmCadastrarNovoLivro = new javax.swing.JMenuItem();
         itmEmprestimo = new javax.swing.JMenuItem();
@@ -112,6 +114,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
         mnu1Administrador.add(itmCadastrarNovoUsuario);
+
+        mnuConsultarUsuarios.setText("Consultar Usuários");
+        mnu1Administrador.add(mnuConsultarUsuarios);
 
         jMenuBar1.add(mnu1Administrador);
 
@@ -231,28 +236,28 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private void itmCadastrarNovoUsuarioMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_itmCadastrarNovoUsuarioMouseReleased
         // TODO add your handling code here:
         dispose();
-        TelaCadastroUsuario newCadastro = new TelaCadastroUsuario();
+        TelaCadastroUsuario newCadastro = new TelaCadastroUsuario(nameRole);
         newCadastro.setVisible(true);
     }//GEN-LAST:event_itmCadastrarNovoUsuarioMouseReleased
 
     private void itmCadastrarNovoLivroMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_itmCadastrarNovoLivroMouseReleased
         // TODO add your handling code here:
         dispose();
-        TelaCadastrarLivro newLivro = new TelaCadastrarLivro();
+        TelaCadastrarLivro newLivro = new TelaCadastrarLivro(nameRole);
         newLivro.setVisible(true);
     }//GEN-LAST:event_itmCadastrarNovoLivroMouseReleased
 
     private void itmEmprestimoMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_itmEmprestimoMouseReleased
         // TODO add your handling code here:
         dispose();
-        TelaRealizarNovoEmprestimo newEmprestimo = new TelaRealizarNovoEmprestimo();
+        TelaRealizarNovoEmprestimo newEmprestimo = new TelaRealizarNovoEmprestimo(nameRole);
         newEmprestimo.setVisible(true);
     }//GEN-LAST:event_itmEmprestimoMouseReleased
 
     private void itmAutorizarEmprestimosMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_itmAutorizarEmprestimosMouseReleased
         // TODO add your handling code here:
         dispose();
-        TelaAutorizarEmprestimo newAutorizar = new TelaAutorizarEmprestimo();
+        TelaAutorizarEmprestimo newAutorizar = new TelaAutorizarEmprestimo(nameRole);
         newAutorizar.setVisible(true);
         
     }//GEN-LAST:event_itmAutorizarEmprestimosMouseReleased
@@ -313,6 +318,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JMenu mnu1Administrador;
     private javax.swing.JMenu mnuAjuda;
+    private javax.swing.JMenuItem mnuConsultarUsuarios;
     private javax.swing.JMenu mnuLivros;
     private javax.swing.JMenu mnuSair;
     // End of variables declaration//GEN-END:variables

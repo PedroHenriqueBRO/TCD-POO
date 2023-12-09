@@ -17,6 +17,11 @@
                 <EventHandler event="mouseReleased" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="itmCadastrarNovoUsuarioMouseReleased"/>
               </Events>
             </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="mnuConsultarUsuarios">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Consultar Usu&#xe1;rios"/>
+              </Properties>
+            </MenuItem>
           </SubComponents>
         </Menu>
         <Menu class="javax.swing.JMenu" name="mnuLivros">

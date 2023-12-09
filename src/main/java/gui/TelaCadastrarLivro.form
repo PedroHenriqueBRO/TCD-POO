@@ -56,7 +56,7 @@
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="lblQuantidade" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="txtNome1" min="-2" pref="54" max="-2" attributes="0"/>
+                          <Component id="txtQuantExemplar" min="-2" pref="54" max="-2" attributes="0"/>
                           <EmptySpace min="0" pref="23" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
@@ -103,7 +103,7 @@
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="lblQuantidade" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtNome1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtQuantExemplar" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="99" max="32767" attributes="0"/>
                   <Component id="txtCancelar" min="-2" max="-2" attributes="0"/>
@@ -146,7 +146,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="txtNome">
         </Component>
-        <Component class="javax.swing.JTextField" name="txtNome1">
+        <Component class="javax.swing.JTextField" name="txtQuantExemplar">
         </Component>
         <Component class="javax.swing.JTextField" name="txtNome2">
         </Component>

@@ -10,11 +10,19 @@ package gui;
  */
 public class TelaAutorizarEmprestimo extends javax.swing.JFrame {
 
+    
+    private String nameRole;
     /**
      * Creates new form TelaAutorizarEmprestimo
      */
     public TelaAutorizarEmprestimo() {
         initComponents();
+        setLocationRelativeTo(null);
+    }
+    public TelaAutorizarEmprestimo(String nameRole) {
+        this.nameRole=nameRole;
+        initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
