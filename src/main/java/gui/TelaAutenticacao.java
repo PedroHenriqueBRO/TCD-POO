@@ -178,6 +178,8 @@ public class TelaAutenticacao extends javax.swing.JFrame {
     private void txtUsuarioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUsuarioKeyPressed
         // TODO add your handling code here:
         lblSenhaIncorreta.setVisible(false);
+      
+        
     }//GEN-LAST:event_txtUsuarioKeyPressed
 
     private void btnAutenticarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAutenticarMouseClicked

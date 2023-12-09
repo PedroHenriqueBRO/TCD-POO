@@ -22,7 +22,9 @@ public interface IDao<E> {
     public void composeSaveOrUpdateStatement(PreparedStatement pstmt, E e);
     
     public Long save(E e);
+    
     public Long Update(E e);
+    
     public String getFindByIdStatment();
     
     public String getFindAllStatment();

@@ -116,6 +116,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         mnu1Administrador.add(itmCadastrarNovoUsuario);
 
         mnuConsultarUsuarios.setText("Consultar Usuários");
+        mnuConsultarUsuarios.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                mnuConsultarUsuariosMouseReleased(evt);
+            }
+        });
         mnu1Administrador.add(mnuConsultarUsuarios);
 
         jMenuBar1.add(mnu1Administrador);
@@ -270,6 +275,14 @@ public class TelaPrincipal extends javax.swing.JFrame {
          newHistorico.setNameRole(nameRole);
          newHistorico.setVisible(true);
     }//GEN-LAST:event_itmHistoricoEmprestimosMouseReleased
+
+    private void mnuConsultarUsuariosMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnuConsultarUsuariosMouseReleased
+        // TODO add your handling code here:
+        TelaControle newTela = new TelaControle();
+        newTela.setVisible(true);
+        dispose();
+        
+    }//GEN-LAST:event_mnuConsultarUsuariosMouseReleased
 
     /**
      * @param args the command line arguments

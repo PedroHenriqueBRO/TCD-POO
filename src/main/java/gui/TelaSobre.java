@@ -4,6 +4,9 @@
  */
 package gui;
 
+import java.net.URL;
+import javax.swing.ImageIcon;
+
 /**
  *
  * @author Caio Veloso &lt;caio.veloso at ifnmg.edu.br&gt;
@@ -16,6 +19,27 @@ public class TelaSobre extends javax.swing.JFrame {
     public TelaSobre() {
         initComponents();
         setLocationRelativeTo(null);
+        
+        
+        
+         jLabel1 = new javax.swing.JLabel();
+         URL imageURL = getClass().getResource("/gui/Screenshot_1.png");
+         if (imageURL != null) {
+         jLabel1.setIcon(new ImageIcon(imageURL));
+         } else {
+         System.err.println("Imagem não encontrada!");
+         }
+
+
+         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/Screenshot_1.png"))); // NOI18N
+
+         jLabel1.setText("jLabel1");
+         
+         
+       
+
+
+
        
     }
 
@@ -33,7 +57,7 @@ public class TelaSobre extends javax.swing.JFrame {
         lblCaio = new javax.swing.JLabel();
         lblPedro = new javax.swing.JLabel();
         lblVictor = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -49,8 +73,8 @@ public class TelaSobre extends javax.swing.JFrame {
         lblVictor.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblVictor.setText("Victor Pereira Barbosa");
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/fotor-20231130142916_resized.png"))); // NOI18N
-        jLabel3.setText("jLabel3");
+        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\caiov\\OneDrive\\Área de Trabalho\\Screenshot_1.png")); // NOI18N
+        jLabel1.setText("jLabel1");
 
         javax.swing.GroupLayout pnlTelaSobreLayout = new javax.swing.GroupLayout(pnlTelaSobre);
         pnlTelaSobre.setLayout(pnlTelaSobreLayout);
@@ -59,7 +83,7 @@ public class TelaSobre extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlTelaSobreLayout.createSequentialGroup()
                 .addGap(284, 284, 284)
                 .addComponent(lblPedro)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 315, Short.MAX_VALUE)
                 .addComponent(lblVictor)
                 .addGap(65, 65, 65))
             .addGroup(pnlTelaSobreLayout.createSequentialGroup()
@@ -70,8 +94,8 @@ public class TelaSobre extends javax.swing.JFrame {
                         .addGap(109, 109, 109)
                         .addComponent(lblIntegrantes))
                     .addGroup(pnlTelaSobreLayout.createSequentialGroup()
-                        .addGap(32, 32, 32)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(55, 55, 55)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 773, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnlTelaSobreLayout.setVerticalGroup(
@@ -79,9 +103,9 @@ public class TelaSobre extends javax.swing.JFrame {
             .addGroup(pnlTelaSobreLayout.createSequentialGroup()
                 .addGap(39, 39, 39)
                 .addComponent(lblIntegrantes)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
-                .addComponent(jLabel3)
-                .addGap(49, 49, 49)
+                .addGap(40, 40, 40)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
                 .addGroup(pnlTelaSobreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCaio)
                     .addComponent(lblPedro)
@@ -101,7 +125,7 @@ public class TelaSobre extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(pnlTelaSobre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 53, Short.MAX_VALUE))
+                .addGap(0, 410, Short.MAX_VALUE))
         );
 
         pack();
@@ -143,7 +167,7 @@ public class TelaSobre extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lblCaio;
     private javax.swing.JLabel lblIntegrantes;
     private javax.swing.JLabel lblPedro;

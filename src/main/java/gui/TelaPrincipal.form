@@ -21,6 +21,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Consultar Usu&#xe1;rios"/>
               </Properties>
+              <Events>
+                <EventHandler event="mouseReleased" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="mnuConsultarUsuariosMouseReleased"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>

@@ -5,6 +5,7 @@
 package user;
 
 
+import credential.Credential;
 import credential.CredentialDao;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -35,10 +36,15 @@ public class UserDao extends Dao<User> {
     public String getUpdateStatment() {
         return " update "+ TABLE + " set name = ?, email = ?, role_id = ? , birthdate = ? where id = ?";
     }
-
+    
+    
+    public String getFindByName(){
+        return "select  id,name,email,role_id,birthdate " + " from " + TABLE + " where name = ?";
+    }
+    
     @Override
     public String getFindByIdStatment() {
-        return "select id,name,email,role_id,birthdate" + " from "+TABLE+" where id = ?"; 
+        return "select id,name,email,role_id,birthdate " + "  from "+ TABLE + " where id = ?"; 
     }
 
     @Override
@@ -105,5 +111,38 @@ public List<User> extractObjects(ResultSet resultSet) {
 
     return UserList;
 }
+
+public User FindName(String name){
+    
+         
+    
+      try ( PreparedStatement preparedStatement
+                = repository.DbConnection.getConnection().prepareStatement(getFindByName())) {                     
+            preparedStatement.setString(1, name);
+            
+            
+            // Show the full sentence
+            System.out.println(">> SQL: " + preparedStatement);
+
+            // Performs the query on the database
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            // Returns the respective object if exists
+            if (resultSet.next()) {
+              
+                User userEncontrado=extractObject(resultSet);  
+                return userEncontrado;
+                
+            }
+
+        } catch (Exception ex) {
+            System.out.println(" " + ex);
+        }
+
+        return null;    
+    
+    
+}
+
 }
   
