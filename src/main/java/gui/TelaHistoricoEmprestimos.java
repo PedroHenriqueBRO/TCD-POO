@@ -31,7 +31,7 @@ public class TelaHistoricoEmprestimos extends javax.swing.JFrame {
         this.Userid=Userid;
         this.nameRole = nameRole;
         initComponents();
-        setTitle("Histórico de empréstimos");
+        setTitle("Histórico de empréstimos["+nameRole+"]");
         setLocationRelativeTo(null);
         String[] strings2 = new String[100];
         int cont=0;
@@ -78,6 +78,8 @@ jScrollPane1.setViewportView(listHistorico);
         listHistorico = new javax.swing.JList<>();
         btnCancelar = new javax.swing.JButton();
         btnFechar1 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jNomelivro = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Histórico de Empréstimos");
@@ -111,26 +113,29 @@ jScrollPane1.setViewportView(listHistorico);
             }
         });
 
+        jLabel1.setText("Nome do livro :");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(170, 170, 170)
-                .addComponent(lblHistorico)
-                .addContainerGap(170, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(12, 12, 12)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnCancelar))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jNomelivro, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnCancelar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnFechar1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(12, 12, 12)
-                        .addComponent(jScrollPane1)))
+                    .addComponent(jScrollPane1))
                 .addGap(37, 37, 37))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(139, 139, 139)
+                .addComponent(lblHistorico)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -140,10 +145,12 @@ jScrollPane1.setViewportView(listHistorico);
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnFechar1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnCancelar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnFechar1)
+                    .addComponent(btnCancelar)
+                    .addComponent(jLabel1)
+                    .addComponent(jNomelivro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
 
         pack();
@@ -158,6 +165,30 @@ jScrollPane1.setViewportView(listHistorico);
 
     private void btnCancelarMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarMouseReleased
         // TODO add your handling code here:
+        String nomelivro=jNomelivro.getText();
+        for(Emprestimo e:new EmprestimoDao().findAll()){
+            if(e.getNomelivro().equals(nomelivro)&&e.getLeitor().getId()==Userid&&e.isAutenticado()==true){
+                new EmprestimoDao().delete(e.getId());
+            }
+        }
+        String[] strings2 = new String[100];
+        int cont=0;
+        for(Emprestimo e:new EmprestimoDao().findAll()){
+            if(e.getLeitor().getId()==Userid){
+                if(e.isAutenticado()==true)
+                strings2[cont]=e.toString();
+                cont++;
+            }
+        }
+listHistorico = new javax.swing.JList<>();
+
+listHistorico.setModel(new javax.swing.AbstractListModel<String>() {
+  
+    public int getSize() { return strings2.length; }
+    public String getElementAt(int i) { return strings2[i]; }
+});
+
+jScrollPane1.setViewportView(listHistorico);
         
     }//GEN-LAST:event_btnCancelarMouseReleased
 
@@ -207,6 +238,8 @@ jScrollPane1.setViewportView(listHistorico);
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnFechar1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JTextField jNomelivro;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblHistorico;
     private javax.swing.JList<String> listHistorico;

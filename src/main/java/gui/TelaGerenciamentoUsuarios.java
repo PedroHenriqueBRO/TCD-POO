@@ -44,7 +44,7 @@ public class TelaGerenciamentoUsuarios extends javax.swing.JDialog {
         initComponents();
         this.nameRole=nameRole;
         setLocationRelativeTo(null);
-        setTitle("Gerenciar usuários");
+        setTitle("Gerenciar usuários["+nameRole+"]");
         
         
         
@@ -320,8 +320,8 @@ public class TelaGerenciamentoUsuarios extends javax.swing.JDialog {
         
         
          dispose();
-        
         TelaPrincipal newTela = new TelaPrincipal(nameRole);
+        newTela.setUserid(Userid);
         newTela.setVisible(true);
         
         
@@ -354,9 +354,9 @@ public class TelaGerenciamentoUsuarios extends javax.swing.JDialog {
            
         new UserDao().delete(user1.getId());
         
-        dispose();
-        
+       dispose();
         TelaPrincipal newTela = new TelaPrincipal(nameRole);
+        newTela.setUserid(Userid);
         newTela.setVisible(true);
        
             
@@ -374,9 +374,9 @@ public class TelaGerenciamentoUsuarios extends javax.swing.JDialog {
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         // TODO add your handling code here:
-        
-        dispose();   
+        dispose();
         TelaPrincipal newTela = new TelaPrincipal(nameRole);
+        newTela.setUserid(Userid);
         newTela.setVisible(true);
     }//GEN-LAST:event_formWindowClosing
 

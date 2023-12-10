@@ -5,6 +5,7 @@ gui\TelaCadastroUsuario$12.class
 gui\TelaHistoricoEmprestimos$4.class
 gui\TelaCadastroUsuario$8.class
 gui\TelaControle$1.class
+gui\TelaHistoricoEmprestimos$7.class
 role\RoleDao.class
 gui\TelaCadastroUsuario$5.class
 gui\TelaCadastroUsuario$2.class
@@ -24,7 +25,6 @@ gui\TelaPrincipal.class
 gui\TelaGerenciamentoUsuarios$1.class
 gui\TelaControleLivro.class
 gui\TelaHistoricoEmprestimos$1.class
-gui\canvas.class
 gui\TelaCadastroUsuario$15.class
 repository\Dao.class
 gui\TelaCadastroUsuario$3.class

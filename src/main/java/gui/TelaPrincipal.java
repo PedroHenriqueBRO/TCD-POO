@@ -40,16 +40,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         this.nameRole=nameRole;        
         initComponents();
         
-        setTitle("Sistema [ "+nameRole+" ]");
+        setTitle("Sistema ["+nameRole+"]");
         setLocationRelativeTo(null);
-
-        if("Administrador".equals(nameRole)){
-            
-
-        }
         if("Leitor".equals(nameRole)){
             
-            
+            mnuConsultarLivro.setVisible(false);
             itmCadastrarNovoLivro.setVisible(false);
             itmCadastrarNovoUsuario.setVisible(false);
             mnu1Administrador.setVisible(false);
@@ -59,7 +54,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
         }
         if("Bibliotecario".equals(nameRole)){
             
-           
             itmCadastrarNovoUsuario.setVisible(false);
             mnu1Administrador.setVisible(false);
             itmAutorizarEmprestimos.setVisible(false);
@@ -89,7 +83,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         mnu1Administrador = new javax.swing.JMenu();
         itmCadastrarNovoUsuario = new javax.swing.JMenuItem();
@@ -99,7 +92,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         itmEmprestimo = new javax.swing.JMenuItem();
         itmAutorizarEmprestimos = new javax.swing.JMenuItem();
         itmHistoricoEmprestimos = new javax.swing.JMenuItem();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        mnuConsultarLivro = new javax.swing.JMenuItem();
         mnuAjuda = new javax.swing.JMenu();
         itmSobre = new javax.swing.JMenuItem();
         mnuSair = new javax.swing.JMenu();
@@ -116,17 +109,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(120, 120, 120)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(138, Short.MAX_VALUE))
+            .addGap(0, 216, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(39, Short.MAX_VALUE))
+            .addGap(0, 145, Short.MAX_VALUE)
         );
 
         mnu1Administrador.setText("Administrador");
@@ -193,13 +180,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
         mnuConsultar.add(itmHistoricoEmprestimos);
 
-        jMenuItem1.setText("Consultar livros");
-        jMenuItem1.addMouseListener(new java.awt.event.MouseAdapter() {
+        mnuConsultarLivro.setText("Consultar livros");
+        mnuConsultarLivro.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
-                jMenuItem1MouseReleased(evt);
+                mnuConsultarLivroMouseReleased(evt);
             }
         });
-        mnuConsultar.add(jMenuItem1);
+        mnuConsultar.add(mnuConsultarLivro);
 
         jMenuBar1.add(mnuConsultar);
 
@@ -235,8 +222,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(41, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -332,12 +319,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
         
     }//GEN-LAST:event_mnuConsultarMouseReleased
 
-    private void jMenuItem1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuItem1MouseReleased
+    private void mnuConsultarLivroMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnuConsultarLivroMouseReleased
         // TODO add your handling code here:
          dispose();
         TelaControleLivro newtela=new TelaControleLivro(nameRole,userid);
         newtela.setVisible(true);
-    }//GEN-LAST:event_jMenuItem1MouseReleased
+    }//GEN-LAST:event_mnuConsultarLivroMouseReleased
 
     /**
      * @param args the command line arguments
@@ -382,13 +369,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem itmFecharPrograma;
     private javax.swing.JMenuItem itmHistoricoEmprestimos;
     private javax.swing.JMenuItem itmSobre;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JMenu mnu1Administrador;
     private javax.swing.JMenu mnuAjuda;
     private javax.swing.JMenu mnuConsultar;
+    private javax.swing.JMenuItem mnuConsultarLivro;
     private javax.swing.JMenuItem mnuConsultarUsuarios;
     private javax.swing.JMenu mnuSair;
     // End of variables declaration//GEN-END:variables

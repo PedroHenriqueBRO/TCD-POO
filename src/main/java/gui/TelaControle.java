@@ -25,7 +25,7 @@ public class TelaControle extends javax.swing.JFrame {
         this.Userid=Userid;
         initComponents();
         this.nameRole=nameRole;
-        setTitle("Tela Controle");
+        setTitle("Tela Controle["+nameRole+"]");
         setLocationRelativeTo(null);
         lblErro.setVisible(false);
     }
@@ -82,7 +82,8 @@ public class TelaControle extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lblNomeUsuario)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtNomeUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 344, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(txtNomeUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(lblErro)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))

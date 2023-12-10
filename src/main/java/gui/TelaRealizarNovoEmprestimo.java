@@ -34,7 +34,7 @@ public class TelaRealizarNovoEmprestimo extends javax.swing.JFrame {
         this.Userid=Userid;
         this.nameRole=nameRole;
         initComponents();
-        setTitle("Realizar empréstimo");
+        setTitle("Realizar empréstimo["+nameRole+"]");
         List<Book> nome1=new BookDao().findAll();
         setLocationRelativeTo(null);
         String[] strings = new String[100];
