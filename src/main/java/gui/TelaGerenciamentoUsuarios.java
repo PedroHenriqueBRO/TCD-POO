@@ -29,7 +29,7 @@ public class TelaGerenciamentoUsuarios extends javax.swing.JDialog {
     private Long id;
     private  User user1;
     private String nameRole;
-    
+    private Long Userid;
     /**
      * Creates new form TelaGerenciamentoUsuarios
      */
@@ -39,7 +39,8 @@ public class TelaGerenciamentoUsuarios extends javax.swing.JDialog {
         setLocationRelativeTo(null);
     }
 
-      public TelaGerenciamentoUsuarios(User e,String nameRole){
+      public TelaGerenciamentoUsuarios(User e,String nameRole,Long Userid){
+        this.Userid=Userid;
         initComponents();
         this.nameRole=nameRole;
         setLocationRelativeTo(null);
@@ -366,16 +367,16 @@ public class TelaGerenciamentoUsuarios extends javax.swing.JDialog {
         // TODO add your handling code here:
         
         dispose();
-        TelaPrincipal newTela = new TelaPrincipal();
+        TelaPrincipal newTela = new TelaPrincipal(nameRole);
+        newTela.setUserid(Userid);
         newTela.setVisible(true);
     }//GEN-LAST:event_btnCancelarMouseReleased
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         // TODO add your handling code here:
         
-        dispose();
-        
-        TelaPrincipal newTela = new TelaPrincipal();
+        dispose();   
+        TelaPrincipal newTela = new TelaPrincipal(nameRole);
         newTela.setVisible(true);
     }//GEN-LAST:event_formWindowClosing
 

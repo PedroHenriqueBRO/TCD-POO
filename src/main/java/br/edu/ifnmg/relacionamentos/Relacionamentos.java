@@ -17,9 +17,9 @@ import java.util.List;
 public class Relacionamentos {
 
     public static void main(String[] args) throws Exception{
-        testeA();
-        testeB();
-        testeC();
+        //testeA();
+        //testeB();
+        //testeC();
         //testeD();
         //testeE();
         //testeF();
@@ -45,7 +45,7 @@ public class Relacionamentos {
         new LibrarianDao().save(Bibliotecario);
         //Librarian setada
         RoleDao buscatodos=new RoleDao();
-        buscatodos.printall();
+        
         //printa todos em base ao role, ele tentara printar reader caso seja ou librarian , um dos dois dará nulo
         
          
@@ -67,7 +67,7 @@ public class Relacionamentos {
         new ReaderDao().save(leitor);
         //Librarian setada
         RoleDao buscatodos=new RoleDao();
-        buscatodos.printall();
+        
         //printa todos em base ao role, ele tentara printar reader caso seja ou librarian , um dos dois dará nulo
          
     }
@@ -89,18 +89,16 @@ public class Relacionamentos {
         new ReaderDao().save(leitor);
         //Librarian setada
         RoleDao buscatodos=new RoleDao();
-        buscatodos.printall();
+        
         //printa todos em base ao role, ele tentara printar reader caso seja ou librarian , um dos dois dará nulo
         //ira printa o usuario do teste A e B também 
     }
     
     public static void testeE() throws Exception{
-        ReaderDao leitor=new ReaderDao();
-        leitor.printall();
+        
     }
     public static void testeD() throws Exception{
-        LibrarianDao biblio=new LibrarianDao();
-        biblio.printall();
+        
         
     }
     public static void testeF() throws Exception{

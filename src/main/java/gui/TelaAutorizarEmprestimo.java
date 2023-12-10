@@ -18,6 +18,7 @@ public class TelaAutorizarEmprestimo extends javax.swing.JFrame {
 
     
     private String nameRole;
+    private Long Userid;
     /**
      * Creates new form TelaAutorizarEmprestimo
      */
@@ -25,7 +26,8 @@ public class TelaAutorizarEmprestimo extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
     }
-    public TelaAutorizarEmprestimo(String nameRole) {
+    public TelaAutorizarEmprestimo(String nameRole,Long userid) {
+        this.Userid=userid;
         this.nameRole=nameRole;
         initComponents();
         setTitle("Autorizar Empréstimo");
@@ -53,6 +55,11 @@ public class TelaAutorizarEmprestimo extends javax.swing.JFrame {
 
         btnAutorizar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnAutorizar.setText("Autorizar");
+        btnAutorizar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                btnAutorizarMouseReleased(evt);
+            }
+        });
 
         lblNome.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         lblNome.setText("Usuário:");
@@ -160,6 +167,7 @@ public class TelaAutorizarEmprestimo extends javax.swing.JFrame {
         // TODO add your handling code here:
         dispose();
         TelaPrincipal newTela = new TelaPrincipal(nameRole);
+        newTela.setUserid(Userid);
         newTela.setVisible(true);
 
     }//GEN-LAST:event_btnCancelarMouseReleased

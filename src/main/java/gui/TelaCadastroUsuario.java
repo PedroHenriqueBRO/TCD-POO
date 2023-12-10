@@ -8,6 +8,10 @@ import credential.Credential;
 import credential.CredentialDao;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import librarian.Librarian;
+import librarian.LibrarianDao;
+import reader.Reader;
+import reader.ReaderDao;
 import role.Role;
 import role.RoleDao;
 import user.User;
@@ -23,7 +27,7 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
     
     private String nameRole;
     private Long id;
-  
+    private Long Userid;
     
     /**
      * 
@@ -35,7 +39,8 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         lblErroCadastro.setVisible(false);
     }
-    public TelaCadastroUsuario(String nameRole) {
+    public TelaCadastroUsuario(String nameRole,Long Userid) {
+        this.Userid=Userid;
         
         initComponents();
         setTitle("Cadastrar usuário");
@@ -325,6 +330,7 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
         // TODO add your handling code here:
         dispose();
         TelaPrincipal newTela = new TelaPrincipal(nameRole);
+        newTela.setUserid(Userid);
         newTela.setVisible(true);
     }//GEN-LAST:event_btnCancelarMouseReleased
 
@@ -337,10 +343,16 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
             
            User user1 = new User(null,txtNome.getText(),txtEmail.getText(),localDate);
            user1.setRole(new RoleDao().findById(id));
-          
+           
            Long id2 = new UserDao().save(user1);
            user1.setId(id2);
-           
+           if(id==2L){
+               Reader leitor=new Reader(user1.getId(),user1.getName(),user1.getEmail(),user1.getBirthdate());
+               new ReaderDao().save(leitor);
+           }if(id==3L){
+               Librarian biblio=new Librarian(user1.getId(),user1.getName(),user1.getEmail(),user1.getBirthdate());
+               new LibrarianDao().save(biblio);
+           }
            Credential c1 = new Credential(id2,txtUsername.getText(),txtSenha.getText());
            
            new CredentialDao().save(c1);

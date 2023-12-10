@@ -20,13 +20,14 @@ public class TelaGerenciamentoLivro extends javax.swing.JFrame {
     
     private Book livro = new Book();
     private String nameRole;
-    
+    private Long Userid;
     
     
     /**
      * Creates new form TelaGerenciamentoLivro
      */
-    public TelaGerenciamentoLivro(Book e,String nameRole) {
+    public TelaGerenciamentoLivro(Book e,String nameRole,Long Userid) {
+        this.Userid=Userid;
         initComponents();
         this.nameRole=nameRole;
         this.livro=e;
@@ -203,6 +204,7 @@ public class TelaGerenciamentoLivro extends javax.swing.JFrame {
         // TODO add your handling code here:
         dispose();
         TelaPrincipal newTela = new TelaPrincipal(nameRole);
+        newTela.setUserid(Userid);
         newTela.setVisible(true);
         
     }//GEN-LAST:event_btnCancelarMouseReleased

@@ -16,11 +16,13 @@ public class TelaControle extends javax.swing.JFrame {
     /**
      * Creates new form TelaControle
      */
+    private Long Userid;
     private String nameRole;
     public TelaControle(){
         initComponents();
     }
-    public TelaControle(String nameRole) {
+    public TelaControle(String nameRole,Long Userid) {
+        this.Userid=Userid;
         initComponents();
         this.nameRole=nameRole;
         setTitle("Tela Controle");
@@ -165,7 +167,7 @@ public class TelaControle extends javax.swing.JFrame {
                 
                 dispose();
                 
-                TelaGerenciamentoUsuarios newTela = new TelaGerenciamentoUsuarios(e,nameRole);
+                TelaGerenciamentoUsuarios newTela = new TelaGerenciamentoUsuarios(e,nameRole,Userid);
           
                 newTela.setVisible(true);
             }
@@ -192,11 +194,11 @@ public class TelaControle extends javax.swing.JFrame {
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         // TODO add your handling code here:
-        
-        
+   
         dispose();
         
-        TelaPrincipal newTela = new TelaPrincipal();
+        TelaPrincipal newTela = new TelaPrincipal(nameRole);
+        newTela.setUserid(Userid);
         newTela.setVisible(true);
         
 
@@ -211,6 +213,7 @@ public class TelaControle extends javax.swing.JFrame {
         // TODO add your handling code here:
         dispose();
         TelaPrincipal newTela = new TelaPrincipal(nameRole);
+        newTela.setUserid(Userid);
         newTela.setVisible(true);
     }//GEN-LAST:event_btnCancelarMouseReleased
 

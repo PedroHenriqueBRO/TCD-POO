@@ -97,28 +97,5 @@ public List<Role> extractObjects(ResultSet resultSet) {
         }
 
     return roleList;
-}
-  public void printall(){
-    
-   ReaderDao reader=new ReaderDao();
-   RoleDao papelbusca=new RoleDao();
-   CredentialDao buscacredencial=new CredentialDao();
-   UserDao userbusca=new UserDao();
-   LibrarianDao bibliobusca=new LibrarianDao();
-   
-   for(Role e:papelbusca.findAll()){
-       System.out.println("Usuarios da role id= "+e.getId());
-       for(User u:userbusca.findAll()){
-           if(u.getRole().getId()==e.getId()){
-       System.out.println(">>"+papelbusca.findById(e.getId()));
-       System.out.println(">>"+reader.findById(u.getId()));
-       System.out.println(">>"+bibliobusca.findById(u.getId()));
-       System.out.println(">> "+userbusca.findById(u.getId()) );
-       System.out.println(">> "+buscacredencial.findById(u.getId()));
-       
-           }
-       }
-   }
-}
-  
+}  
 }

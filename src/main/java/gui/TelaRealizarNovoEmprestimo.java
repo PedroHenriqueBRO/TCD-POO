@@ -23,14 +23,15 @@ import user.UserDao;
  */
 public class TelaRealizarNovoEmprestimo extends javax.swing.JFrame {
  private String nameRole;
- 
+ private Long Userid;
     /**
      * Creates new form TelaRealizarNovoCadastro
      */
     public TelaRealizarNovoEmprestimo() {
         initComponents();
     }
-    public TelaRealizarNovoEmprestimo(String nameRole) {
+    public TelaRealizarNovoEmprestimo(String nameRole,Long Userid) {
+        this.Userid=Userid;
         this.nameRole=nameRole;
         initComponents();
         setTitle("Realizar empréstimo");
@@ -232,6 +233,7 @@ jScrollPane2.setViewportView(lstLivrosDisponiveis);
         // TODO add your handling code here:
          dispose();
         TelaPrincipal newTela = new TelaPrincipal(nameRole);
+        newTela.setUserid(Userid);
         newTela.setVisible(true);
     }//GEN-LAST:event_btnCancelarMouseReleased
 

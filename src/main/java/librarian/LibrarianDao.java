@@ -108,22 +108,5 @@ public List<Librarian> extractObjects(ResultSet resultSet) {
 
     return librarianList;
 }
-  public void printall(){
-   LibrarianDao biblio=new LibrarianDao();
-   RoleDao papelbusca=new RoleDao();
-   CredentialDao buscacredencial=new CredentialDao();
-   UserDao userbusca=new UserDao();
-   for(Librarian e:biblio.findAll()){
-       for(User u:userbusca.findAll()){
-           if(u.getId()==e.getId()){
-       System.out.println(">>"+papelbusca.findById(u.getRole().getId()));
-       System.out.println(">>"+biblio.findById(u.getId()));
-       System.out.println(">> "+userbusca.findById(u.getId()) );
-       System.out.println(">> "+buscacredencial.findById(u.getId()) );
-           }
-       }
-       
-   }
-  }
   
 }

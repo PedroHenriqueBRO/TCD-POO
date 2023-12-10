@@ -4,6 +4,9 @@
  */
 package gui;
 
+import java.net.URL;
+import javax.swing.ImageIcon;
+
 /**
  *
  * @author Caio Veloso &lt;caio.veloso at ifnmg.edu.br&gt;
@@ -13,9 +16,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
   private String nameRole;
   
   private Long userid;
-  
-  
-  
+
   //<editor-fold defaultstate="collapsed" desc="Getters/Setters">
   public Long getUserid() {
         return userid;
@@ -27,9 +28,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
   
 //</editor-fold>
     
-  
-  
-  
+ 
    public TelaPrincipal(){
        initComponents();
        setLocationRelativeTo(null);
@@ -38,16 +37,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
      * Creates new form TelaPrincipal
      */
     public TelaPrincipal(String nameRole) {
-        
-        this.nameRole=nameRole;
+        this.nameRole=nameRole;        
         initComponents();
+        
         setTitle("Sistema [ "+nameRole+" ]");
         setLocationRelativeTo(null);
-        
-        
 
-        
-        
         if("Administrador".equals(nameRole)){
             
 
@@ -94,6 +89,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         mnu1Administrador = new javax.swing.JMenu();
         itmCadastrarNovoUsuario = new javax.swing.JMenuItem();
@@ -120,11 +116,17 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 388, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(120, 120, 120)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(138, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 265, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(29, 29, 29)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(39, Short.MAX_VALUE))
         );
 
         mnu1Administrador.setText("Administrador");
@@ -238,9 +240,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -277,7 +279,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
         
         dispose();
-        TelaCadastroUsuario newCadastro = new TelaCadastroUsuario(nameRole);
+        TelaCadastroUsuario newCadastro = new TelaCadastroUsuario(nameRole,userid);
         newCadastro.setVisible(true);
         
     }//GEN-LAST:event_itmCadastrarNovoUsuarioMouseReleased
@@ -287,7 +289,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         
         
         dispose();
-        TelaCadastrarLivro newLivro = new TelaCadastrarLivro(nameRole);
+        TelaCadastrarLivro newLivro = new TelaCadastrarLivro(nameRole,userid);
         newLivro.setVisible(true);
         
         
@@ -296,14 +298,14 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private void itmEmprestimoMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_itmEmprestimoMouseReleased
         // TODO add your handling code here:
         dispose();
-        TelaRealizarNovoEmprestimo newEmprestimo = new TelaRealizarNovoEmprestimo(nameRole);
+        TelaRealizarNovoEmprestimo newEmprestimo = new TelaRealizarNovoEmprestimo(nameRole,userid);
         newEmprestimo.setVisible(true);
     }//GEN-LAST:event_itmEmprestimoMouseReleased
 
     private void itmAutorizarEmprestimosMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_itmAutorizarEmprestimosMouseReleased
         // TODO add your handling code here:
         dispose();
-        TelaAutorizarEmprestimo newAutorizar = new TelaAutorizarEmprestimo(nameRole);
+        TelaAutorizarEmprestimo newAutorizar = new TelaAutorizarEmprestimo(nameRole,userid);
         newAutorizar.setVisible(true);
         
     }//GEN-LAST:event_itmAutorizarEmprestimosMouseReleased
@@ -312,14 +314,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
          // TODO add your handling code here:
          dispose();
          TelaHistoricoEmprestimos newHistorico = new TelaHistoricoEmprestimos(nameRole,userid);
-         newHistorico.setNameRole(nameRole);
          newHistorico.setVisible(true);
     }//GEN-LAST:event_itmHistoricoEmprestimosMouseReleased
 
     private void mnuConsultarUsuariosMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnuConsultarUsuariosMouseReleased
         // TODO add your handling code here:
         dispose();
-        TelaControle newTela = new TelaControle(nameRole);
+        TelaControle newTela = new TelaControle(nameRole,userid);
         newTela.setVisible(true);
         
         
@@ -334,7 +335,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private void jMenuItem1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuItem1MouseReleased
         // TODO add your handling code here:
          dispose();
-        TelaControleLivro newtela=new TelaControleLivro(nameRole);
+        TelaControleLivro newtela=new TelaControleLivro(nameRole,userid);
         newtela.setVisible(true);
     }//GEN-LAST:event_jMenuItem1MouseReleased
 
@@ -381,6 +382,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem itmFecharPrograma;
     private javax.swing.JMenuItem itmHistoricoEmprestimos;
     private javax.swing.JMenuItem itmSobre;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;

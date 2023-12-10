@@ -15,13 +15,15 @@ import user.UserDao;
  */
 public class TelaControleLivro extends javax.swing.JFrame {
     private String nameRole;
+    private Long Userid;
     /**
      * Creates new form TelaControleLivro
      */
     public TelaControleLivro(){
         initComponents();
     }
-    public TelaControleLivro(String nameRole) {
+    public TelaControleLivro(String nameRole,Long Userid) {
+        this.Userid=Userid;
         this.nameRole=nameRole;
         initComponents();
         setTitle("Controle dos livros");
@@ -151,7 +153,7 @@ public class TelaControleLivro extends javax.swing.JFrame {
                 // cria
                 dispose();
                 
-                TelaGerenciamentoLivro newTela = new TelaGerenciamentoLivro(l,nameRole);
+                TelaGerenciamentoLivro newTela = new TelaGerenciamentoLivro(l,nameRole,Userid);
                 newTela.setVisible(true);
                 newTela.setTitle("Gerenciamento do Livro");
                 
@@ -181,6 +183,7 @@ public class TelaControleLivro extends javax.swing.JFrame {
         // TODO add your handling code here:
         dispose();
         TelaPrincipal newTela = new TelaPrincipal(nameRole);
+        newTela.setUserid(Userid);
         newTela.setVisible(true);
     }//GEN-LAST:event_btnCancelarMouseReleased
 

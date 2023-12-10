@@ -103,24 +103,4 @@ public List<Reader> extractObjects(ResultSet resultSet) {
 
     return readerList;
 }
-public void printall(){
-    
-   ReaderDao reader=new ReaderDao();
-   RoleDao papelbusca=new RoleDao();
-   CredentialDao buscacredencial=new CredentialDao();
-   UserDao userbusca=new UserDao();
-   for(Reader e:reader.findAll()){
-       for(User u:userbusca.findAll()){
-           if(u.getId()==e.getId()){
-       System.out.println(">>"+papelbusca.findById(u.getRole().getId()));
-       System.out.println(">>"+reader.findById(u.getId()));
-       System.out.println(">> "+userbusca.findById(u.getId()) );
-       System.out.println(">> "+buscacredencial.findById(u.getId()) );
-           }
-       }
-   }
-}
-
-
-
 }

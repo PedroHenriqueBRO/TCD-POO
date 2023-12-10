@@ -16,6 +16,7 @@ import java.math.BigDecimal;
 public class TelaCadastrarLivro extends javax.swing.JFrame {
    
     private String nameRole;
+    private Long Userid;
     /**
      * Creates new form TelaCadastrarLivro
      */
@@ -23,8 +24,8 @@ public class TelaCadastrarLivro extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
     }
-    public TelaCadastrarLivro(String nameRole) {
-        
+    public TelaCadastrarLivro(String nameRole,Long Userid) {
+        this.Userid=Userid;
         
         initComponents();
         this.nameRole=nameRole;
@@ -176,6 +177,7 @@ public class TelaCadastrarLivro extends javax.swing.JFrame {
         // TODO add your handling code here:
         dispose();
         TelaPrincipal newTela = new TelaPrincipal(nameRole);
+        newTela.setUserid(Userid);
         newTela.setVisible(true);
         
     }//GEN-LAST:event_txtCancelarMouseReleased
@@ -184,6 +186,7 @@ public class TelaCadastrarLivro extends javax.swing.JFrame {
         // TODO add your handling code here:
         dispose();
         TelaPrincipal newTela = new TelaPrincipal(nameRole);
+        newTela.setUserid(Userid);
         newTela.setVisible(true);
        
     }//GEN-LAST:event_formWindowClosing

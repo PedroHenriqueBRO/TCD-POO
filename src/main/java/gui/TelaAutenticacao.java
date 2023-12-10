@@ -4,8 +4,11 @@
  */
 package gui;
 
+
 import credential.Credential;
 import credential.CredentialDao;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import user.User;
 
 /**
@@ -17,14 +20,13 @@ public class TelaAutenticacao extends javax.swing.JFrame {
      private String salt = "_123dfertywqsaasq";
      
      private static Credential usuario1;
-     
-     
-     
     /**
      * Creates new form Telateste
      */
+    
     public TelaAutenticacao() {
         initComponents();
+        
         lblSenhaIncorreta.setVisible(false);
         setLocationRelativeTo(null);
         if(usuario1 != null){
@@ -117,40 +119,39 @@ public class TelaAutenticacao extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(lblNome)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnAutenticar))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(lblSenha)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblSenhaIncorreta, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(18, Short.MAX_VALUE))
+                            .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblNome)
                     .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnAutenticar, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblSenha)
                     .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblSenha)
                     .addComponent(btnCancelar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblSenhaIncorreta)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(37, 37, 37))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -159,14 +160,15 @@ public class TelaAutenticacao extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(16, 16, 16))
         );
 
         pack();
@@ -208,21 +210,17 @@ public class TelaAutenticacao extends javax.swing.JFrame {
         User credentialAutenticada = new CredentialDao().authenticate(c1);
 
         if(credentialAutenticada != null){
-            System.out.println(" >> Autenticado   "  + credentialAutenticada);
 
             dispose();
             
             usuario1 = c1;
-            
-            // new Administrador(credentialAutenticada).setVisible(true);
+
 
             if("Administrador".equals(credentialAutenticada.getRole().getName())){
                 
                 
-                TelaPrincipal telaAdmin = new TelaPrincipal(credentialAutenticada.getRole().getName());
-                telaAdmin.setNameRole(credentialAutenticada.getRole().getName());
+                TelaPrincipal telaAdmin = new TelaPrincipal(credentialAutenticada.getRole().getName());               
                 telaAdmin.setUserid(credentialAutenticada.getId());
-                telaAdmin.setTitle("SISTEMA  [ " + c1.getUsername() + "]");
                 telaAdmin.setVisible(true);
                 
 
@@ -230,14 +228,12 @@ public class TelaAutenticacao extends javax.swing.JFrame {
             if("Bibliotecario".equals(credentialAutenticada.getRole().getName())){
                 
                 TelaPrincipal telaBibliotecario = new TelaPrincipal(credentialAutenticada.getRole().getName()); 
-                telaBibliotecario.setTitle("SISTEMA  [ " + c1.getUsername() + "]");
                 telaBibliotecario.setUserid(credentialAutenticada.getId());
                 telaBibliotecario.setVisible(true);
 
             }
             if("Leitor".equals(credentialAutenticada.getRole().getName())){
                 TelaPrincipal telaLeitor = new TelaPrincipal(credentialAutenticada.getRole().getName());
-                telaLeitor.setTitle("SISTEMA  [ " + c1.getUsername() + "]");
                 telaLeitor.setUserid(credentialAutenticada.getId());
                 telaLeitor.setVisible(true);
 

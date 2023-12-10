@@ -43,7 +43,7 @@ public class EmprestimoDao extends Dao<Emprestimo> {
 
     @Override
     public String getUpdateStatment() {
-        return " update "+ TABLE + " set nomelivro = ?, id_leitor = ?,datadeemprestimo = ?,entrega = ?,autenticado = ? where id = " + setid;
+        return " update "+ TABLE + " set nomelivro = ?, id_leitor = ?,datadeemprestimo = ?,entrega = ?,autenticado = ? where id = ?";
     }
 
     @Override
