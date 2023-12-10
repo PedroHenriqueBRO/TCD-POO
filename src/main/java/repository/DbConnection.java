@@ -24,14 +24,14 @@ public class DbConnection {
     
     static {
          
-        URL = "jdbc:mysql://localhost:3306/mydb?zeroDateTimeBehavior=CONVERT_TO_NULL";
+        URL = "jdbc:mysql://localhost:3306/sistema?zeroDateTimeBehavior=CONVERT_TO_NULL";
 //        URL = "jdbc:mysql://localhost:3306/" + repository.Dao.DB
 //                + "?useUnicode=true"
 //                + "&useJDBCCompliantTimezoneShift=true"
 //                + "&serverTimezone=UTC"
 //                + "&autoReconnect=true";
         USER = "root";
-        PASSWORD = "juliacaio810";
+        PASSWORD = "";
     }
 
     

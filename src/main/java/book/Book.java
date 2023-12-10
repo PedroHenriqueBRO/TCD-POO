@@ -14,11 +14,11 @@ import java.math.BigDecimal;
 public class Book extends Entity {
     private String nomelivro;
     private String autor;
-    private BigDecimal quantidadeex;
+    private int quantidadeex;
 
     public Book(){
     }
-    public Book(Long id,String nomelivro,String autor,BigDecimal quantidadeex){
+    public Book(Long id,String nomelivro,String autor,int quantidadeex){
         setNomelivro(nomelivro);
         setId(id);
         setAutor(autor);
@@ -41,18 +41,18 @@ public class Book extends Entity {
         this.autor = autor;
     }
 
-    public BigDecimal getQuantidadeex() {
+    public int  getQuantidadeex() {
         return quantidadeex;
     }
 
-    public void setQuantidadeex(BigDecimal quantidadeex) {
+    public void setQuantidadeex(int  quantidadeex) {
         this.quantidadeex = quantidadeex;
     }
 //</editor-fold>
 
     @Override
     public String toString() {
-        return "Book{" + "nomelivro=" + nomelivro + ", autor=" + autor + ", quantidadeex=" + quantidadeex + '}';
+        return "Book{" +"id = "+getId()+ " nomelivro=" + nomelivro + ", autor=" + autor + ", quantidadeex=" + quantidadeex + '}';
     }
     
    

@@ -4,6 +4,12 @@
  */
 package gui;
 
+import Emprestimo.Emprestimo;
+import Emprestimo.EmprestimoDao;
+import credential.Credential;
+import credential.CredentialDao;
+import user.User;
+
 /**
  *
  * @author Caio Veloso &lt;caio.veloso at ifnmg.edu.br&gt;
@@ -22,6 +28,7 @@ public class TelaAutorizarEmprestimo extends javax.swing.JFrame {
     public TelaAutorizarEmprestimo(String nameRole) {
         this.nameRole=nameRole;
         initComponents();
+        setTitle("Autorizar Empréstimo");
         setLocationRelativeTo(null);
     }
 
@@ -40,6 +47,7 @@ public class TelaAutorizarEmprestimo extends javax.swing.JFrame {
         lblSenha = new javax.swing.JLabel();
         txtUsuario = new javax.swing.JTextField();
         txtSenha = new javax.swing.JTextField();
+        btnCancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -52,14 +60,18 @@ public class TelaAutorizarEmprestimo extends javax.swing.JFrame {
         lblSenha.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         lblSenha.setText("Senha:");
 
+        btnCancelar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btnCancelar.setText("Cancelar");
+        btnCancelar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                btnCancelarMouseReleased(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnAutorizar)
-                .addGap(46, 46, 46))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -70,6 +82,12 @@ public class TelaAutorizarEmprestimo extends javax.swing.JFrame {
                     .addComponent(txtUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE)
                     .addComponent(txtSenha))
                 .addContainerGap(131, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnCancelar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAutorizar, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -82,9 +100,11 @@ public class TelaAutorizarEmprestimo extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblSenha)
                     .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 106, Short.MAX_VALUE)
+                .addGap(28, 28, 28)
                 .addComponent(btnAutorizar)
-                .addGap(43, 43, 43))
+                .addGap(18, 18, 18)
+                .addComponent(btnCancelar)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -106,6 +126,43 @@ public class TelaAutorizarEmprestimo extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnAutorizarMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAutorizarMouseReleased
+        // TODO add your handling code here:
+        Credential c1 = new Credential();
+        txtSenha.getText(); // md5 com o salt _123dfertywqsaasq
+
+        try {
+            c1.setUsername(txtUsuario.getText());
+            c1.setPassword(txtSenha.getText());
+
+        } catch (Exception ex) {
+            System.out.println("Erro na inserção");
+        }
+
+        c1 = new CredentialDao().guiAuthenticate(c1);
+        User r = new CredentialDao().authenticate(c1);
+        if(r!=null){
+            for(Emprestimo e:new EmprestimoDao().findAll()){
+                if(e.getLeitor().getId()==r.getId()){
+                    e.setAutenticado(true);
+                    EmprestimoDao em=new EmprestimoDao();
+                    em.setSetid(e.getId());
+                    em.Update(e);
+                    
+                }
+            }
+        }
+        
+    }//GEN-LAST:event_btnAutorizarMouseReleased
+
+    private void btnCancelarMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarMouseReleased
+        // TODO add your handling code here:
+        dispose();
+        TelaPrincipal newTela = new TelaPrincipal(nameRole);
+        newTela.setVisible(true);
+
+    }//GEN-LAST:event_btnCancelarMouseReleased
 
     /**
      * @param args the command line arguments
@@ -144,6 +201,7 @@ public class TelaAutorizarEmprestimo extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAutorizar;
+    private javax.swing.JButton btnCancelar;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblNome;
     private javax.swing.JLabel lblSenha;

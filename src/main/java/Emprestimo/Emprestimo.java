@@ -71,7 +71,7 @@ public class Emprestimo extends Entity{
 
     @Override
     public String toString() {
-        return "Emprestimo{" + "nomelivro=" + nomelivro + ", dataEmprestimo=" + dataEmprestimo + ", autenticado=" + autenticado + ", dataDevolu\u00e7\u00e3o=" + dataDevolução + '}';
+        return "Emprestimo: " + " Livro:" + nomelivro + " Data de emprestimo=" + dataEmprestimo + " Data de Devolu\u00e7\u00e3o=" + dataDevolução;
     }
     
 }

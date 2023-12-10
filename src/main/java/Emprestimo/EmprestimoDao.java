@@ -23,14 +23,27 @@ import user.User;
 public class EmprestimoDao extends Dao<Emprestimo> {
     
       public static final String TABLE="emprestimo";
-     @Override
+      
+      private Long setid;
+      
+    public Long getSetid() {
+        return setid;
+    }
+      
+    //<editor-fold defaultstate="collapsed" desc="Getters/Setters">
+    public void setSetid(Long setid) {
+        this.setid = setid;
+    }
+
+//</editor-fold>
+    @Override
     public String getSaveStatment() {
-        return "insert into " + TABLE + "(id,nomelivro,id_leitor,datadeemprestimo,entrega,autenticado) values(?,?,?,?,?,?)";
+        return "insert into " + TABLE + "(nomelivro,id_leitor,datadeemprestimo,entrega,autenticado) values(?,?,?,?,?)";
     }
 
     @Override
     public String getUpdateStatment() {
-        return " update "+ TABLE + " set nomelivro = ?, id_leitor = ?,datadeemprestimo = ?,entrega = ?,,autenticado = ? , where id = ?";
+        return " update "+ TABLE + " set nomelivro = ?, id_leitor = ?,datadeemprestimo = ?,entrega = ?,autenticado = ? where id = " + setid;
     }
 
     @Override
@@ -47,16 +60,18 @@ public class EmprestimoDao extends Dao<Emprestimo> {
     public String getDeleteStatment() {
          return "Delete from " + TABLE + " where id = ?";
     }
+    
+    
 @Override
     public void composeSaveOrUpdateStatement(PreparedStatement pstmt, Emprestimo e) {
     try {
-        pstmt.setString(2, e.getNomelivro());
-        pstmt.setLong(3, e.getLeitor().getId());
-        pstmt.setObject(4, e.getDataEmprestimo());
-        pstmt.setObject(5, e.getDataDevolução());
-        pstmt.setBoolean(6, e.isAutenticado());
+        pstmt.setString(1, e.getNomelivro());
+        pstmt.setLong(2, e.getLeitor().getId());
+        pstmt.setObject(3, e.getDataEmprestimo());
+        pstmt.setObject(4, e.getDataDevolução());
+        pstmt.setBoolean(5, e.isAutenticado());
         if (e.getId() != null) {
-            pstmt.setLong(1, e.getId());
+            pstmt.setLong(6, e.getId());
         }
     } catch (SQLException ex) {
         Logger.getLogger(EmprestimoDao.class.getName()).log(Level.SEVERE, null, ex);

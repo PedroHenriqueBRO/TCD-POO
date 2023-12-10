@@ -23,22 +23,22 @@ public class BookDao extends Dao<Book> {
     
      @Override
     public String getSaveStatment() {
-        return "insert into " + TABLE + "(nomelivro,autor,quantidadeex) values(?,?,?)";
+        return "insert into " + TABLE + "(nome,autor,quantidadeex) values(?,?,?)";
     }
 
     @Override
     public String getUpdateStatment() {
-        return " update "+ TABLE + " set nomelivro = ?, autor = ?, quantidadeex= ? , where id = ?";
+        return " update "+ TABLE + " set nome = ?, autor = ?, quantidadeex= ? where id = ?";
     }
 
     @Override
     public String getFindByIdStatment() {
-        return "select id,nomelivro,autor,quantidadeex" + " from "+TABLE+" where id = ?"; 
+        return "select id,nome,autor,quantidadeex" + " from "+TABLE+" where id = ?"; 
     }
 
     @Override
     public String getFindAllStatment() {
-        return "select id, nomelivro,autor,quantidadeex" + " from " + TABLE;
+        return "select id, nome,autor,quantidadeex" + " from " + TABLE;
     }
 
     @Override
@@ -50,7 +50,7 @@ public class BookDao extends Dao<Book> {
     try {
         pstmt.setString(1, e.getNomelivro());
         pstmt.setString(2, e.getAutor());
-        pstmt.setBigDecimal(3, e.getQuantidadeex());
+        pstmt.setInt(3, e.getQuantidadeex());
         if (e.getId() != null) {
             pstmt.setLong(4, e.getId());
         }
@@ -68,9 +68,9 @@ public class BookDao extends Dao<Book> {
             
             livro = new Book();
             livro.setId(resultSet.getLong("id"));
-            livro.setNomelivro(resultSet.getString("nomelivro"));
+            livro.setNomelivro(resultSet.getString("nome"));
             livro.setAutor(resultSet.getString("autor"));
-            livro.setQuantidadeex(resultSet.getBigDecimal("quantidadeex"));            
+            livro.setQuantidadeex(resultSet.getInt("quantidadeex"));            
         }catch (Exception ex) {
             Logger.getLogger(BookDao.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -88,9 +88,9 @@ public List<Book> extractObjects(ResultSet resultSet) {
             
             Book livro = new Book(); 
             livro.setId(resultSet.getLong("id"));
-            livro.setNomelivro(resultSet.getString("nomelivro"));
+            livro.setNomelivro(resultSet.getString("nome"));
             livro.setAutor(resultSet.getString("autor"));
-            livro.setQuantidadeex(resultSet.getBigDecimal("quantidadeex"));      
+            livro.setQuantidadeex(resultSet.getInt("quantidadeex"));      
             
             BookList.add(livro);
             
@@ -100,6 +100,38 @@ public List<Book> extractObjects(ResultSet resultSet) {
         }
 
     return BookList;
+}
+public String getFindByName(){
+        return "select id,nome,autor,quantidadeex" + " from " + TABLE + " where nome = ?";
+     }
+public Book FindByName(String nomelivro){
+      try ( PreparedStatement preparedStatement
+                = repository.DbConnection.getConnection().prepareStatement(getFindByName())) {
+            preparedStatement.setString(1, nomelivro);
+
+
+            // Show the full sentence
+            System.out.println(">> SQL: " + preparedStatement);
+
+            // Performs the query on the database
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            // Returns the respective object if exists
+            if (resultSet.next()) {
+
+                Book bookEncontrado = extractObject(resultSet);
+                return bookEncontrado;
+ 
+
+            }
+
+        } catch (Exception ex) {
+            System.out.println(" " + ex);
+        }
+
+          return null;
+
+
 }
    
 }

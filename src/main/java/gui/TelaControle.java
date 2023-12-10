@@ -16,8 +16,14 @@ public class TelaControle extends javax.swing.JFrame {
     /**
      * Creates new form TelaControle
      */
-    public TelaControle() {
+    private String nameRole;
+    public TelaControle(){
         initComponents();
+    }
+    public TelaControle(String nameRole) {
+        initComponents();
+        this.nameRole=nameRole;
+        setTitle("Tela Controle");
         setLocationRelativeTo(null);
         lblErro.setVisible(false);
     }
@@ -34,10 +40,19 @@ public class TelaControle extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         lblNomeUsuario = new javax.swing.JLabel();
         txtNomeUsuario = new javax.swing.JTextField();
-        btnBUSCAR = new javax.swing.JButton();
         lblErro = new javax.swing.JLabel();
+        btnBUSCAR = new javax.swing.JButton();
+        btnCancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         lblNomeUsuario.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         lblNomeUsuario.setText("Insira o nome do Usuário:");
@@ -53,14 +68,6 @@ public class TelaControle extends javax.swing.JFrame {
             }
         });
 
-        btnBUSCAR.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        btnBUSCAR.setText("BUSCAR");
-        btnBUSCAR.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                btnBUSCARMouseReleased(evt);
-            }
-        });
-
         lblErro.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         lblErro.setForeground(new java.awt.Color(255, 51, 51));
         lblErro.setText("USUÁRIO NÃO ENCONTRADO NO SISTEMA!");
@@ -70,47 +77,66 @@ public class TelaControle extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lblNomeUsuario)
-                .addGap(18, 18, 18)
-                .addComponent(txtNomeUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 373, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(110, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblNomeUsuario)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtNomeUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 344, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(lblErro)
-                .addGap(66, 66, 66)
-                .addComponent(btnBUSCAR, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(67, 67, 67)
+                .addGap(20, 20, 20)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblNomeUsuario)
-                    .addComponent(txtNomeUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 98, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnBUSCAR, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblErro))
-                .addGap(47, 47, 47))
+                    .addComponent(txtNomeUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(lblErro)
+                .addContainerGap(22, Short.MAX_VALUE))
         );
+
+        btnBUSCAR.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btnBUSCAR.setText("BUSCAR");
+        btnBUSCAR.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                btnBUSCARMouseReleased(evt);
+            }
+        });
+
+        btnCancelar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btnCancelar.setText("CANCELAR");
+        btnCancelar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                btnCancelarMouseReleased(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(87, 87, 87)
+                .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(213, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnCancelar)
+                    .addComponent(btnBUSCAR, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(78, 78, 78)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(122, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addComponent(btnBUSCAR, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -131,16 +157,19 @@ public class TelaControle extends javax.swing.JFrame {
         try{
              User e = new UserDao().FindName(txtNomeUsuario.getText());
              
-             dispose();
+            if(e == null){
+                lblErro.setVisible(true);
+                
+            }
+            else{
+                
+                dispose();
+                
+                TelaGerenciamentoUsuarios newTela = new TelaGerenciamentoUsuarios(e,nameRole);
+          
+                newTela.setVisible(true);
+            }
 
-          
-          TelaGerenciamentoUsuarios newTela = new TelaGerenciamentoUsuarios(e);
-          
-          newTela.setVisible(true);
-          
-          
-          
-          
           
           
           
@@ -149,7 +178,7 @@ public class TelaControle extends javax.swing.JFrame {
              
         }
         catch(Exception ex){
-            lblErro.setVisible(true);
+           
         }
        
         
@@ -160,6 +189,30 @@ public class TelaControle extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_btnBUSCARMouseReleased
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        // TODO add your handling code here:
+        
+        
+        dispose();
+        
+        TelaPrincipal newTela = new TelaPrincipal();
+        newTela.setVisible(true);
+        
+
+    }//GEN-LAST:event_formWindowClosing
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        // TODO add your handling code here:
+      
+    }//GEN-LAST:event_formWindowClosed
+
+    private void btnCancelarMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarMouseReleased
+        // TODO add your handling code here:
+        dispose();
+        TelaPrincipal newTela = new TelaPrincipal(nameRole);
+        newTela.setVisible(true);
+    }//GEN-LAST:event_btnCancelarMouseReleased
 
     /**
      * @param args the command line arguments
@@ -198,6 +251,7 @@ public class TelaControle extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBUSCAR;
+    private javax.swing.JButton btnCancelar;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblErro;
     private javax.swing.JLabel lblNomeUsuario;

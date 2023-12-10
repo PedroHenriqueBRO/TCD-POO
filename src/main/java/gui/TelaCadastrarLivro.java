@@ -6,6 +6,7 @@ package gui;
 
 import book.Book;
 import book.BookDao;
+import static java.lang.Integer.parseInt;
 import java.math.BigDecimal;
 
 /**
@@ -13,9 +14,7 @@ import java.math.BigDecimal;
  * @author Caio Veloso &lt;caio.veloso at ifnmg.edu.br&gt;
  */
 public class TelaCadastrarLivro extends javax.swing.JFrame {
-
-    
-    
+   
     private String nameRole;
     /**
      * Creates new form TelaCadastrarLivro
@@ -29,6 +28,7 @@ public class TelaCadastrarLivro extends javax.swing.JFrame {
         
         initComponents();
         this.nameRole=nameRole;
+        setTitle("Cadastrar livro");
         setLocationRelativeTo(null);
         
         
@@ -52,8 +52,8 @@ public class TelaCadastrarLivro extends javax.swing.JFrame {
         txtNome = new javax.swing.JTextField();
         txtQuantExemplar = new javax.swing.JTextField();
         txtNome2 = new javax.swing.JTextField();
+        btnCadastrar = new javax.swing.JButton();
         txtCancelar = new javax.swing.JButton();
-        btnCadastrar1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Cadastro de Livro");
@@ -72,6 +72,14 @@ public class TelaCadastrarLivro extends javax.swing.JFrame {
         lblQuantidade.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         lblQuantidade.setText("Quantidade exemplares:");
 
+        btnCadastrar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btnCadastrar.setText("Cadastrar");
+        btnCadastrar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                btnCadastrarMouseReleased(evt);
+            }
+        });
+
         txtCancelar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         txtCancelar.setText("Cancelar");
         txtCancelar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -85,14 +93,6 @@ public class TelaCadastrarLivro extends javax.swing.JFrame {
             }
         });
 
-        btnCadastrar1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        btnCadastrar1.setText("Cadastrar");
-        btnCadastrar1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                btnCadastrar1MouseReleased(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -100,34 +100,36 @@ public class TelaCadastrarLivro extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(lblQuantidade)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtQuantExemplar, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 23, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblNome)
-                            .addComponent(lblAutor))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(txtCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(lblNome)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtNome, javax.swing.GroupLayout.DEFAULT_SIZE, 209, Short.MAX_VALUE)
+                                .addGap(102, 102, 102)))
+                        .addContainerGap())
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(lblAutor)
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtNome2)
-                            .addComponent(txtNome))))
-                .addGap(102, 102, 102))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(txtCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(19, 19, 19))
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                    .addContainerGap(264, Short.MAX_VALUE)
-                    .addComponent(btnCadastrar1)
-                    .addGap(19, 19, 19)))
+                        .addComponent(txtNome2)
+                        .addGap(106, 106, 106))))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(lblQuantidade)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txtQuantExemplar, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(32, 32, 32)
+                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblNome)
                     .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -139,14 +141,11 @@ public class TelaCadastrarLivro extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblQuantidade)
                     .addComponent(txtQuantExemplar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 99, Short.MAX_VALUE)
+                .addGap(32, 32, 32)
+                .addComponent(btnCadastrar)
+                .addGap(18, 18, 18)
                 .addComponent(txtCancelar)
-                .addGap(23, 23, 23))
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                    .addContainerGap(190, Short.MAX_VALUE)
-                    .addComponent(btnCadastrar1)
-                    .addGap(66, 66, 66)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -171,18 +170,7 @@ public class TelaCadastrarLivro extends javax.swing.JFrame {
 
     private void txtCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCancelarActionPerformed
         // TODO add your handling code here:
-        dispose();
-        TelaPrincipal newTela = new TelaPrincipal(nameRole);
-        newTela.setVisible(true);
     }//GEN-LAST:event_txtCancelarActionPerformed
-
-    private void btnCadastrar1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCadastrar1MouseReleased
-        // TODO add your handling code here:
-        BigDecimal Conversao = new BigDecimal(txtQuantExemplar.getText());
-        
-        Book livro=new Book(null,txtNome.getText(),txtNome2.getText(),Conversao);
-        new BookDao().save(livro); 
-    }//GEN-LAST:event_btnCadastrar1MouseReleased
 
     private void txtCancelarMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCancelarMouseReleased
         // TODO add your handling code here:
@@ -199,6 +187,14 @@ public class TelaCadastrarLivro extends javax.swing.JFrame {
         newTela.setVisible(true);
        
     }//GEN-LAST:event_formWindowClosing
+
+    private void btnCadastrarMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCadastrarMouseReleased
+        // TODO add your handling code here:
+        int Conversao = parseInt(txtQuantExemplar.getText());
+        
+        Book livro=new Book(null,txtNome.getText(),txtNome2.getText(),Conversao);
+        new BookDao().save(livro);
+    }//GEN-LAST:event_btnCadastrarMouseReleased
 
     /**
      * @param args the command line arguments
@@ -236,7 +232,7 @@ public class TelaCadastrarLivro extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCadastrar1;
+    private javax.swing.JButton btnCadastrar;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblAutor;
     private javax.swing.JLabel lblNome;

@@ -4,6 +4,12 @@
  */
 package gui;
 
+import Emprestimo.Emprestimo;
+import Emprestimo.EmprestimoDao;
+import credential.Credential;
+import credential.CredentialDao;
+import reader.Reader;
+import reader.ReaderDao;
 /**
  *
  * @author Caio Veloso &lt;caio.veloso at ifnmg.edu.br&gt;
@@ -13,6 +19,7 @@ public class TelaHistoricoEmprestimos extends javax.swing.JFrame {
     /**
      * Creates new form TelaHistoricoEmprestimos
      */
+    private Long Userid;
     private String nameRole;
     
     public TelaHistoricoEmprestimos() {
@@ -20,10 +27,30 @@ public class TelaHistoricoEmprestimos extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }
     
-    public TelaHistoricoEmprestimos(String nameRole) {
+    public TelaHistoricoEmprestimos(String nameRole,Long Userid) {
+        this.Userid=Userid;
         this.nameRole = nameRole;
         initComponents();
+        setTitle("Histórico de empréstimos");
         setLocationRelativeTo(null);
+        String[] strings2 = new String[100];
+        int cont=0;
+        for(Emprestimo e:new EmprestimoDao().findAll()){
+            if(e.getLeitor().getId()==Userid){
+                if(e.isAutenticado()==true)
+                strings2[cont]=e.toString();
+                cont++;
+            }
+        }
+listHistorico = new javax.swing.JList<>();
+
+listHistorico.setModel(new javax.swing.AbstractListModel<String>() {
+  
+    public int getSize() { return strings2.length; }
+    public String getElementAt(int i) { return strings2[i]; }
+});
+
+jScrollPane1.setViewportView(listHistorico);
     }
 
     public String getNameRole() {
@@ -49,7 +76,8 @@ public class TelaHistoricoEmprestimos extends javax.swing.JFrame {
         lblHistorico = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         listHistorico = new javax.swing.JList<>();
-        btnFechar = new javax.swing.JButton();
+        btnCancelar = new javax.swing.JButton();
+        btnFechar1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Histórico de Empréstimos");
@@ -69,10 +97,17 @@ public class TelaHistoricoEmprestimos extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(listHistorico);
 
-        btnFechar.setText("FECHAR");
-        btnFechar.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnCancelar.setText("CANCELAR EMPRÉSTIMO");
+        btnCancelar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
-                btnFecharMouseReleased(evt);
+                btnCancelarMouseReleased(evt);
+            }
+        });
+
+        btnFechar1.setText("FECHAR");
+        btnFechar1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                btnFechar1MouseReleased(evt);
             }
         });
 
@@ -81,27 +116,29 @@ public class TelaHistoricoEmprestimos extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 595, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(132, 132, 132)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jScrollPane1)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addContainerGap()
                         .addComponent(lblHistorico)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(btnFechar)
-                .addGap(66, 66, 66))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnFechar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(37, 37, 37))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addComponent(lblHistorico)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(62, 62, 62)
-                .addComponent(btnFechar)
-                .addContainerGap(61, Short.MAX_VALUE))
+                .addGap(18, 18, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnCancelar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnFechar1))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         pack();
@@ -114,14 +151,17 @@ public class TelaHistoricoEmprestimos extends javax.swing.JFrame {
         newTela.setVisible(true);
     }//GEN-LAST:event_formWindowClosing
 
-    private void btnFecharMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnFecharMouseReleased
+    private void btnCancelarMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarMouseReleased
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_btnCancelarMouseReleased
+
+    private void btnFechar1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnFechar1MouseReleased
         // TODO add your handling code here:
         dispose();
         TelaPrincipal newTela = new TelaPrincipal(nameRole);
-        System.out.println("NAMEROLE " + this.nameRole);
-        newTela.setNameRole(nameRole);
         newTela.setVisible(true);
-    }//GEN-LAST:event_btnFecharMouseReleased
+    }//GEN-LAST:event_btnFechar1MouseReleased
 
     /**
      * @param args the command line arguments
@@ -159,7 +199,8 @@ public class TelaHistoricoEmprestimos extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnFechar;
+    private javax.swing.JButton btnCancelar;
+    private javax.swing.JButton btnFechar1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblHistorico;
     private javax.swing.JList<String> listHistorico;
