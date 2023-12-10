@@ -60,8 +60,8 @@
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="txtSenha" max="32767" attributes="0"/>
                               <Component id="txtUsuario" max="32767" attributes="0"/>
+                              <Component id="txtSenha" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
@@ -143,8 +143,6 @@
         </Component>
         <Component class="javax.swing.JTextField" name="txtUsuario">
         </Component>
-        <Component class="javax.swing.JTextField" name="txtSenha">
-        </Component>
         <Component class="javax.swing.JButton" name="btnAutorizar">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -212,6 +210,11 @@
           <Events>
             <EventHandler event="mouseReleased" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnCancelarMouseReleased"/>
           </Events>
+        </Component>
+        <Component class="javax.swing.JPasswordField" name="txtSenha">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="jPasswordField1"/>
+          </Properties>
         </Component>
       </SubComponents>
     </Container>

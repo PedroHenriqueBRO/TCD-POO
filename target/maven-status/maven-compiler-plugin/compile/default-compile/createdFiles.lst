@@ -1,5 +1,6 @@
 gui\TelaAutorizarEmprestimo$3.class
 gui\TelaControle$4.class
+gui\GerenciamentoCredencial.class
 gui\TelaGerenciamentoUsuarios$9$1.class
 gui\TelaCadastroUsuario$12.class
 gui\TelaHistoricoEmprestimos$4.class
@@ -14,15 +15,18 @@ gui\TelaPrincipal$2.class
 gui\TelaAutorizarEmprestimo.class
 gui\TelaAutenticacao$1.class
 book\Book.class
+gui\GerenciamentoCredencial$1.class
 gui\TelaAutenticacao$9.class
 gui\TelaPrincipal$7.class
 gui\TelaGerenciamentoUsuarios$4.class
 gui\TelaPrincipal$11.class
 book\BookDao.class
+gui\TelaPrincipal$14.class
 gui\TelaRealizarNovoEmprestimo$2.class
 gui\TelaPrincipal$4.class
 gui\TelaPrincipal.class
 gui\TelaGerenciamentoUsuarios$1.class
+gui\GerenciamentoCredencial$4.class
 gui\TelaControleLivro.class
 gui\TelaHistoricoEmprestimos$1.class
 gui\TelaCadastroUsuario$15.class
@@ -60,6 +64,7 @@ gui\TelaRealizarNovoEmprestimo$3.class
 gui\TelaGerenciamentoLivro.class
 Emprestimo\Emprestimo.class
 user\UserDao.class
+gui\GerenciamentoCredencial$2.class
 gui\TelaPrincipal$3.class
 gui\TelaGerenciamentoUsuarios$8.class
 gui\TelaAutenticacao$8.class
@@ -92,6 +97,7 @@ gui\TelaGerenciamentoUsuarios$3.class
 gui\TelaCadastroUsuario$14.class
 gui\TelaCadastrarLivro$3.class
 gui\TelaGerenciamentoUsuarios.class
+gui\GerenciamentoCredencial$3.class
 gui\TelaAutenticacao$6.class
 gui\TelaPrincipal$5.class
 gui\TelaCadastroUsuario$7.class
@@ -110,6 +116,7 @@ gui\TelaRealizarNovoEmprestimo$7.class
 Emprestimo\EmprestimoDao.class
 gui\TelaCadastroUsuario$1.class
 gui\TelaCadastrarLivro$2.class
+gui\TelaSobre$2.class
 gui\TelaGerenciamentoUsuarios$9.class
 gui\TelaRealizarNovoEmprestimo$1.class
 gui\TelaControle$2.class

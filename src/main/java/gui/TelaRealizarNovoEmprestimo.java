@@ -83,7 +83,6 @@ jScrollPane2.setViewportView(lstLivrosDisponiveis);
         lblSenha = new javax.swing.JLabel();
         lblLivro1 = new javax.swing.JLabel();
         txtUsuario = new javax.swing.JTextField();
-        txtSenha = new javax.swing.JTextField();
         btnAutorizar = new javax.swing.JButton();
         lblLivro2 = new javax.swing.JLabel();
         txtNome = new javax.swing.JTextField();
@@ -91,6 +90,7 @@ jScrollPane2.setViewportView(lstLivrosDisponiveis);
         jScrollPane2 = new javax.swing.JScrollPane();
         lstLivrosDisponiveis = new javax.swing.JList<>();
         btnCancelar = new javax.swing.JButton();
+        txtSenha = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Novo Empréstimo");
@@ -141,6 +141,8 @@ jScrollPane2.setViewportView(lstLivrosDisponiveis);
             }
         });
 
+        txtSenha.setText("jPasswordField1");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -154,8 +156,8 @@ jScrollPane2.setViewportView(lstLivrosDisponiveis);
                             .addComponent(lblSenha))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtSenha)
-                            .addComponent(txtUsuario)))
+                            .addComponent(txtUsuario)
+                            .addComponent(txtSenha)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(lblLivro2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -369,7 +371,7 @@ jScrollPane2.setViewportView(lstLivrosDisponiveis);
     private javax.swing.JLabel lblSenha;
     private javax.swing.JList<String> lstLivrosDisponiveis;
     private javax.swing.JTextField txtNome;
-    private javax.swing.JTextField txtSenha;
+    private javax.swing.JPasswordField txtSenha;
     private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
 }

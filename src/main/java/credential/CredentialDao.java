@@ -24,6 +24,15 @@ import user.UserDao;
 public class CredentialDao extends Dao<Credential> {
     
     public static final String TABLE = "credential";
+    private Long id;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
     
     public String getNamePassword(){
         return "SELECT * from credential where username = ? and password = md5(?)";
@@ -38,7 +47,7 @@ public class CredentialDao extends Dao<Credential> {
 
     @Override
     public String getUpdateStatment() {
-        return " update "+ TABLE + " set username = ?, password = ?, lastAcess = ?, enabled = ?,user_id = ? where id = ?";
+        return " update "+ TABLE + " set id = ?,username = ?, password = md5(?), lastAcess = ?, enabled = ?,user_id = ? where id = "+id;
     }
 
     @Override

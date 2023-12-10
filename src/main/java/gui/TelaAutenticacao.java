@@ -7,6 +7,7 @@ package gui;
 
 import credential.Credential;
 import credential.CredentialDao;
+import java.time.LocalDate;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import user.User;
@@ -205,12 +206,28 @@ public class TelaAutenticacao extends javax.swing.JFrame {
         } catch (Exception ex) {
             System.out.println("Erro na inserção");
         }
-
+        String senha=c1.getPassword();
         c1 = new CredentialDao().guiAuthenticate(c1);
+        
         User credentialAutenticada = new CredentialDao().authenticate(c1);
-
+        
+        
+        
         if(credentialAutenticada != null){
-
+        
+        Credential c2=c1;
+        try{
+        c2.setPassword(senha);
+        c2.setLastAcess(LocalDate.now());
+        
+        CredentialDao atualizar=new CredentialDao();
+        
+        atualizar.setId(c2.getId());
+        
+        atualizar.Update(c2);
+        }catch(Exception e){
+            System.out.println("ERRO");
+        }
             dispose();
             
             usuario1 = c1;

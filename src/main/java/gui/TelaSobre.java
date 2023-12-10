@@ -4,30 +4,26 @@
  */
 package gui;
 
-import java.net.URL;
-import javax.swing.ImageIcon;
-
 /**
  *
  * @author Caio Veloso &lt;caio.veloso at ifnmg.edu.br&gt;
  */
 public class TelaSobre extends javax.swing.JFrame {
 
+    
+    private String nameRole;
     /**
      * Creates new form TelaSobre
      */
     public TelaSobre() {
         initComponents();
+    }
+    
+    public TelaSobre(String nameRole){
+        initComponents();
         setLocationRelativeTo(null);
-        
-        
-      
-         
-       
-
-
-
-       
+        this.nameRole=nameRole;
+        setTitle("Sobre [" + nameRole + "]");
     }
 
     /**
@@ -39,55 +35,94 @@ public class TelaSobre extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        pnlTelaSobre = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
+        lblFotoCaio = new javax.swing.JLabel();
         lblIntegrantes = new javax.swing.JLabel();
-        lblCaio = new javax.swing.JLabel();
-        lblPedro = new javax.swing.JLabel();
-        lblVictor = new javax.swing.JLabel();
+        lblNomeCaio = new javax.swing.JLabel();
+        lblFotoPedrao = new javax.swing.JLabel();
+        lblFotoVictor = new javax.swing.JLabel();
+        lblNomePedro = new javax.swing.JLabel();
+        lblNomeVictor = new javax.swing.JLabel();
+        btnVoltar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        lblIntegrantes.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lblFotoCaio.setIcon(new javax.swing.ImageIcon("C:\\Users\\xtron\\Desktop\\TCD-POO\\resources\\foto_caio.png")); // NOI18N
+
+        lblIntegrantes.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
         lblIntegrantes.setText("INTEGRANTES DO GRUPO");
 
-        lblCaio.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        lblCaio.setText("Caio Veloso Dias");
+        lblNomeCaio.setText("Caio Veloso Dias");
 
-        lblPedro.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        lblPedro.setText("Pedro Henrique Braga dos Reis Oliveira");
+        lblFotoPedrao.setIcon(new javax.swing.ImageIcon("C:\\Users\\xtron\\Desktop\\TCD-POO\\resources\\foto_pedrao.png")); // NOI18N
 
-        lblVictor.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        lblVictor.setText("Victor Pereira Barbosa");
+        lblFotoVictor.setIcon(new javax.swing.ImageIcon("C:\\Users\\xtron\\Desktop\\TCD-POO\\resources\\foto_viteira.png")); // NOI18N
 
-        javax.swing.GroupLayout pnlTelaSobreLayout = new javax.swing.GroupLayout(pnlTelaSobre);
-        pnlTelaSobre.setLayout(pnlTelaSobreLayout);
-        pnlTelaSobreLayout.setHorizontalGroup(
-            pnlTelaSobreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlTelaSobreLayout.createSequentialGroup()
-                .addGap(69, 69, 69)
-                .addComponent(lblCaio)
-                .addGap(51, 51, 51)
-                .addGroup(pnlTelaSobreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlTelaSobreLayout.createSequentialGroup()
-                        .addComponent(lblPedro)
-                        .addGap(45, 45, 45)
-                        .addComponent(lblVictor))
-                    .addGroup(pnlTelaSobreLayout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(lblIntegrantes)))
-                .addContainerGap(64, Short.MAX_VALUE))
-        );
-        pnlTelaSobreLayout.setVerticalGroup(
-            pnlTelaSobreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlTelaSobreLayout.createSequentialGroup()
-                .addGap(40, 40, 40)
+        lblNomePedro.setText("Pedro Henrique Braga dos Reis Oliveira");
+
+        lblNomeVictor.setText("Victor Pereira Barbosa");
+
+        btnVoltar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btnVoltar.setText("Voltar");
+        btnVoltar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                btnVoltarMouseReleased(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(btnVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(92, 92, 92)
+                        .addComponent(lblNomeCaio))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(42, 42, 42)
+                        .addComponent(lblFotoCaio)))
+                .addGap(64, 64, 64)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblFotoPedrao)
+                    .addComponent(lblNomePedro))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblFotoVictor)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(49, 49, 49)
+                        .addComponent(lblNomeVictor)))
+                .addGap(128, 128, 128))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(295, 295, 295)
                 .addComponent(lblIntegrantes)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 232, Short.MAX_VALUE)
-                .addGroup(pnlTelaSobreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblCaio)
-                    .addComponent(lblPedro)
-                    .addComponent(lblVictor))
-                .addGap(59, 59, 59))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(33, 33, 33)
+                .addComponent(lblIntegrantes, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(69, 69, 69)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblFotoPedrao)
+                            .addComponent(lblFotoVictor))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(lblNomePedro)
+                                .addComponent(lblNomeCaio))
+                            .addComponent(lblNomeVictor)))
+                    .addComponent(lblFotoCaio))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
+                .addComponent(btnVoltar)
+                .addGap(24, 24, 24))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -95,18 +130,28 @@ public class TelaSobre extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(pnlTelaSobre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 2, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(pnlTelaSobre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnVoltarMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVoltarMouseReleased
+        // TODO add your handling code here:
+        dispose();
+        TelaPrincipal newTela = new TelaPrincipal(nameRole);
+        newTela.setVisible(true);
+        newTela.setTitle("Sistema [" + nameRole + "]");
+        
+    }//GEN-LAST:event_btnVoltarMouseReleased
 
     /**
      * @param args the command line arguments
@@ -144,10 +189,14 @@ public class TelaSobre extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel lblCaio;
+    private javax.swing.JButton btnVoltar;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lblFotoCaio;
+    private javax.swing.JLabel lblFotoPedrao;
+    private javax.swing.JLabel lblFotoVictor;
     private javax.swing.JLabel lblIntegrantes;
-    private javax.swing.JLabel lblPedro;
-    private javax.swing.JLabel lblVictor;
-    private javax.swing.JPanel pnlTelaSobre;
+    private javax.swing.JLabel lblNomeCaio;
+    private javax.swing.JLabel lblNomePedro;
+    private javax.swing.JLabel lblNomeVictor;
     // End of variables declaration//GEN-END:variables
 }

@@ -87,6 +87,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
         mnu1Administrador = new javax.swing.JMenu();
         itmCadastrarNovoUsuario = new javax.swing.JMenuItem();
         mnuConsultarUsuarios = new javax.swing.JMenuItem();
+        jMenu1 = new javax.swing.JMenu();
+        jGerenciar = new javax.swing.JMenuItem();
         mnuConsultar = new javax.swing.JMenu();
         itmCadastrarNovoLivro = new javax.swing.JMenuItem();
         itmEmprestimo = new javax.swing.JMenuItem();
@@ -135,6 +137,18 @@ public class TelaPrincipal extends javax.swing.JFrame {
         mnu1Administrador.add(mnuConsultarUsuarios);
 
         jMenuBar1.add(mnu1Administrador);
+
+        jMenu1.setText("Perfil");
+
+        jGerenciar.setText("Gerenciar");
+        jGerenciar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                jGerenciarMouseReleased(evt);
+            }
+        });
+        jMenu1.add(jGerenciar);
+
+        jMenuBar1.add(jMenu1);
 
         mnuConsultar.setText("Livros");
         mnuConsultar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -257,7 +271,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private void itmSobreMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_itmSobreMouseReleased
         // TODO add your handling code here:
         dispose();
-        TelaSobre newSobre = new TelaSobre();
+        TelaSobre newSobre = new TelaSobre(nameRole);
         newSobre.setVisible(true);
         
     }//GEN-LAST:event_itmSobreMouseReleased
@@ -326,6 +340,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
         newtela.setVisible(true);
     }//GEN-LAST:event_mnuConsultarLivroMouseReleased
 
+    private void jGerenciarMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jGerenciarMouseReleased
+        // TODO add your handling code here:
+        dispose();
+        GerenciamentoCredencial newtela=new GerenciamentoCredencial(nameRole,userid);
+        newtela.setVisible(true);
+    }//GEN-LAST:event_jGerenciarMouseReleased
+
     /**
      * @param args the command line arguments
      */
@@ -369,6 +390,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem itmFecharPrograma;
     private javax.swing.JMenuItem itmHistoricoEmprestimos;
     private javax.swing.JMenuItem itmSobre;
+    private javax.swing.JMenuItem jGerenciar;
+    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JMenu mnu1Administrador;
