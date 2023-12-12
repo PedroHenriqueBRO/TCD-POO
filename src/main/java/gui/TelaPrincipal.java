@@ -4,8 +4,24 @@
  */
 package gui;
 
+import java.io.InputStream;
 import java.net.URL;
 import javax.swing.ImageIcon;
+import javax.swing.JDialog;
+import repository.DbConnection;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JDialog;
+import javax.swing.JOptionPane;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -97,6 +113,16 @@ public class TelaPrincipal extends javax.swing.JFrame {
         mnuConsultarLivro = new javax.swing.JMenuItem();
         mnuAjuda = new javax.swing.JMenu();
         itmSobre = new javax.swing.JMenuItem();
+        mnuRelatório = new javax.swing.JMenu();
+        itmLivros = new javax.swing.JMenuItem();
+        itmEmprestimos = new javax.swing.JMenuItem();
+        itmCredencias = new javax.swing.JMenuItem();
+        itmBibliotecarios = new javax.swing.JMenuItem();
+        itmLeitores = new javax.swing.JMenuItem();
+        Roles = new javax.swing.JMenuItem();
+        itmUsuarios = new javax.swing.JMenuItem();
+        itmEmprestimosAutorizados = new javax.swing.JMenuItem();
+        itmUsuariosLogados = new javax.swing.JMenuItem();
         mnuSair = new javax.swing.JMenu();
         itmFecharPrograma = new javax.swing.JMenuItem();
 
@@ -111,7 +137,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 216, Short.MAX_VALUE)
+            .addGap(0, 428, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -216,6 +242,87 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         jMenuBar1.add(mnuAjuda);
 
+        mnuRelatório.setText("Relatório");
+
+        itmLivros.setText("Livros");
+        itmLivros.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                itmLivrosMouseReleased(evt);
+            }
+        });
+        itmLivros.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itmLivrosActionPerformed(evt);
+            }
+        });
+        mnuRelatório.add(itmLivros);
+
+        itmEmprestimos.setText("Emprestimos");
+        itmEmprestimos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                itmEmprestimosMouseReleased(evt);
+            }
+        });
+        mnuRelatório.add(itmEmprestimos);
+
+        itmCredencias.setText("Credenciais");
+        itmCredencias.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                itmCredenciasMouseReleased(evt);
+            }
+        });
+        mnuRelatório.add(itmCredencias);
+
+        itmBibliotecarios.setText("Bibliotecarios");
+        itmBibliotecarios.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                itmBibliotecariosMouseReleased(evt);
+            }
+        });
+        mnuRelatório.add(itmBibliotecarios);
+
+        itmLeitores.setText("Leitores");
+        itmLeitores.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                itmLeitoresMouseReleased(evt);
+            }
+        });
+        mnuRelatório.add(itmLeitores);
+
+        Roles.setText("Roles");
+        Roles.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                RolesMouseReleased(evt);
+            }
+        });
+        mnuRelatório.add(Roles);
+
+        itmUsuarios.setText("Usuarios");
+        itmUsuarios.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                itmUsuariosMouseReleased(evt);
+            }
+        });
+        mnuRelatório.add(itmUsuarios);
+
+        itmEmprestimosAutorizados.setText("Emprestimos autorizados");
+        itmEmprestimosAutorizados.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                itmEmprestimosAutorizadosMouseReleased(evt);
+            }
+        });
+        mnuRelatório.add(itmEmprestimosAutorizados);
+
+        itmUsuariosLogados.setText("Usuarios Logados");
+        itmUsuariosLogados.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                itmUsuariosLogadosMouseReleased(evt);
+            }
+        });
+        mnuRelatório.add(itmUsuariosLogados);
+
+        jMenuBar1.add(mnuRelatório);
+
         mnuSair.setText("Sair");
 
         itmFecharPrograma.setText("Fechar");
@@ -236,13 +343,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(41, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(76, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -330,6 +437,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private void mnuConsultarMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnuConsultarMouseReleased
         // TODO add your handling code here:
        
+        dispose();
         
     }//GEN-LAST:event_mnuConsultarMouseReleased
 
@@ -346,6 +454,281 @@ public class TelaPrincipal extends javax.swing.JFrame {
         GerenciamentoCredencial newtela=new GerenciamentoCredencial(nameRole,userid);
         newtela.setVisible(true);
     }//GEN-LAST:event_jGerenciarMouseReleased
+
+    private void itmLivrosMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_itmLivrosMouseReleased
+        // TODO add your handling code here:
+      String title = "Listagem de Leitores";
+
+        try (InputStream in = getClass().getResourceAsStream("/LivrosListagem.jasper")) {
+            JasperPrint jasperPrint = JasperFillManager.fillReport(in, null, DbConnection.getConnection());
+
+            JasperViewer jasperViewer = new JasperViewer(jasperPrint, false);
+
+            JDialog dialog = new JDialog(this);
+            dialog.setContentPane(jasperViewer.getContentPane());
+            dialog.setSize(jasperViewer.getSize());
+            dialog.setTitle(title);
+            dialog.setModal(true);
+
+            // Centralizar o JDialog em relação à tela
+            dialog.setLocationRelativeTo(null);
+
+            dialog.setVisible(true);
+
+            // Certifique-se de fechar o JDialog após a visualização do relatório (se necessário).
+            // dialog.dispose();
+
+        } catch (IOException | JRException ex) {
+            Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, "Erro ao gerar relatório", ex);
+            // Exiba uma mensagem ao usuário informando sobre o erro.
+            JOptionPane.showMessageDialog(this, "Erro ao gerar relatório: " + ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+        }
+        
+    }//GEN-LAST:event_itmLivrosMouseReleased
+
+    private void itmLivrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmLivrosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_itmLivrosActionPerformed
+
+    private void itmEmprestimosMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_itmEmprestimosMouseReleased
+        // TODO add your handling code here:
+        String title = "Listagem de Emprestimos";
+
+        try (InputStream in = getClass().getResourceAsStream("/ListagemEmprestimo.jasper")) {
+            JasperPrint jasperPrint = JasperFillManager.fillReport(in, null, DbConnection.getConnection());
+
+            JasperViewer jasperViewer = new JasperViewer(jasperPrint, false);
+
+            JDialog dialog = new JDialog(this);
+            dialog.setContentPane(jasperViewer.getContentPane());
+            dialog.setSize(jasperViewer.getSize());
+            dialog.setTitle(title);
+            dialog.setModal(true);
+
+            // Centralizar o JDialog em relação à tela
+            dialog.setLocationRelativeTo(null);
+
+            dialog.setVisible(true);
+
+            // Certifique-se de fechar o JDialog após a visualização do relatório (se necessário).
+            // dialog.dispose();
+
+        } catch (IOException | JRException ex) {
+            Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, "Erro ao gerar relatório", ex);
+            // Exiba uma mensagem ao usuário informando sobre o erro.
+            JOptionPane.showMessageDialog(this, "Erro ao gerar relatório: " + ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_itmEmprestimosMouseReleased
+
+    private void itmCredenciasMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_itmCredenciasMouseReleased
+        // TODO add your handling code here:
+        String title = "Listagem de Credenciais";
+
+        try (InputStream in = getClass().getResourceAsStream("/ListagemCredential.jasper")) {
+            JasperPrint jasperPrint = JasperFillManager.fillReport(in, null, DbConnection.getConnection());
+
+            JasperViewer jasperViewer = new JasperViewer(jasperPrint, false);
+
+            JDialog dialog = new JDialog(this);
+            dialog.setContentPane(jasperViewer.getContentPane());
+            dialog.setSize(jasperViewer.getSize());
+            dialog.setTitle(title);
+            dialog.setModal(true);
+
+            // Centralizar o JDialog em relação à tela
+            dialog.setLocationRelativeTo(null);
+
+            dialog.setVisible(true);
+
+            // Certifique-se de fechar o JDialog após a visualização do relatório (se necessário).
+            // dialog.dispose();
+
+        } catch (IOException | JRException ex) {
+            Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, "Erro ao gerar relatório", ex);
+            // Exiba uma mensagem ao usuário informando sobre o erro.
+            JOptionPane.showMessageDialog(this, "Erro ao gerar relatório: " + ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_itmCredenciasMouseReleased
+
+    private void itmBibliotecariosMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_itmBibliotecariosMouseReleased
+        // TODO add your handling code here:
+        String title = "Listagem de Bibliotecarios";
+
+        try (InputStream in = getClass().getResourceAsStream("/ListagemBibliotecario.jasper")) {
+            JasperPrint jasperPrint = JasperFillManager.fillReport(in, null, DbConnection.getConnection());
+
+            JasperViewer jasperViewer = new JasperViewer(jasperPrint, false);
+
+            JDialog dialog = new JDialog(this);
+            dialog.setContentPane(jasperViewer.getContentPane());
+            dialog.setSize(jasperViewer.getSize());
+            dialog.setTitle(title);
+            dialog.setModal(true);
+
+            // Centralizar o JDialog em relação à tela
+            dialog.setLocationRelativeTo(null);
+
+            dialog.setVisible(true);
+
+            // Certifique-se de fechar o JDialog após a visualização do relatório (se necessário).
+            // dialog.dispose();
+
+        } catch (IOException | JRException ex) {
+            Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, "Erro ao gerar relatório", ex);
+            // Exiba uma mensagem ao usuário informando sobre o erro.
+            JOptionPane.showMessageDialog(this, "Erro ao gerar relatório: " + ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_itmBibliotecariosMouseReleased
+
+    private void itmLeitoresMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_itmLeitoresMouseReleased
+        // TODO add your handling code here:
+        String title = "Listagem de Leitores";
+
+        try (InputStream in = getClass().getResourceAsStream("/ListagemLeitores.jasper")) {
+            JasperPrint jasperPrint = JasperFillManager.fillReport(in, null, DbConnection.getConnection());
+
+            JasperViewer jasperViewer = new JasperViewer(jasperPrint, false);
+
+            JDialog dialog = new JDialog(this);
+            dialog.setContentPane(jasperViewer.getContentPane());
+            dialog.setSize(jasperViewer.getSize());
+            dialog.setTitle(title);
+            dialog.setModal(true);
+
+            // Centralizar o JDialog em relação à tela
+            dialog.setLocationRelativeTo(null);
+
+            dialog.setVisible(true);
+
+            // Certifique-se de fechar o JDialog após a visualização do relatório (se necessário).
+            // dialog.dispose();
+
+        } catch (IOException | JRException ex) {
+            Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, "Erro ao gerar relatório", ex);
+            // Exiba uma mensagem ao usuário informando sobre o erro.
+            JOptionPane.showMessageDialog(this, "Erro ao gerar relatório: " + ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_itmLeitoresMouseReleased
+
+    private void RolesMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RolesMouseReleased
+        // TODO add your handling code here:
+        String title = "Listagem de Roles";
+
+        try (InputStream in = getClass().getResourceAsStream("/ListagemRole.jasper")) {
+            JasperPrint jasperPrint = JasperFillManager.fillReport(in, null, DbConnection.getConnection());
+
+            JasperViewer jasperViewer = new JasperViewer(jasperPrint, false);
+
+            JDialog dialog = new JDialog(this);
+            dialog.setContentPane(jasperViewer.getContentPane());
+            dialog.setSize(jasperViewer.getSize());
+            dialog.setTitle(title);
+            dialog.setModal(true);
+
+            // Centralizar o JDialog em relação à tela
+            dialog.setLocationRelativeTo(null);
+
+            dialog.setVisible(true);
+
+            // Certifique-se de fechar o JDialog após a visualização do relatório (se necessário).
+            // dialog.dispose();
+
+        } catch (IOException | JRException ex) {
+            Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, "Erro ao gerar relatório", ex);
+            // Exiba uma mensagem ao usuário informando sobre o erro.
+            JOptionPane.showMessageDialog(this, "Erro ao gerar relatório: " + ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_RolesMouseReleased
+
+    private void itmUsuariosMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_itmUsuariosMouseReleased
+        // TODO add your handling code here:
+        String title = "Listagem de Usuarios";
+
+        try (InputStream in = getClass().getResourceAsStream("/ListagemUser.jasper")) {
+            JasperPrint jasperPrint = JasperFillManager.fillReport(in, null, DbConnection.getConnection());
+
+            JasperViewer jasperViewer = new JasperViewer(jasperPrint, false);
+
+            JDialog dialog = new JDialog(this);
+            dialog.setContentPane(jasperViewer.getContentPane());
+            dialog.setSize(jasperViewer.getSize());
+            dialog.setTitle(title);
+            dialog.setModal(true);
+
+            // Centralizar o JDialog em relação à tela
+            dialog.setLocationRelativeTo(null);
+
+            dialog.setVisible(true);
+
+            // Certifique-se de fechar o JDialog após a visualização do relatório (se necessário).
+            // dialog.dispose();
+
+        } catch (IOException | JRException ex) {
+            Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, "Erro ao gerar relatório", ex);
+            // Exiba uma mensagem ao usuário informando sobre o erro.
+            JOptionPane.showMessageDialog(this, "Erro ao gerar relatório: " + ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_itmUsuariosMouseReleased
+
+    private void itmEmprestimosAutorizadosMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_itmEmprestimosAutorizadosMouseReleased
+        // TODO add your handling code here:
+         String title = "Listagem de emprestimos AUTORIZADOS";
+
+        try (InputStream in = getClass().getResourceAsStream("/EmprestimoAutorizado.jasper")) {
+            JasperPrint jasperPrint = JasperFillManager.fillReport(in, null, DbConnection.getConnection());
+
+            JasperViewer jasperViewer = new JasperViewer(jasperPrint, false);
+
+            JDialog dialog = new JDialog(this);
+            dialog.setContentPane(jasperViewer.getContentPane());
+            dialog.setSize(jasperViewer.getSize());
+            dialog.setTitle(title);
+            dialog.setModal(true);
+
+            // Centralizar o JDialog em relação à tela
+            dialog.setLocationRelativeTo(null);
+
+            dialog.setVisible(true);
+
+            // Certifique-se de fechar o JDialog após a visualização do relatório (se necessário).
+            // dialog.dispose();
+
+        } catch (IOException | JRException ex) {
+            Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, "Erro ao gerar relatório", ex);
+            // Exiba uma mensagem ao usuário informando sobre o erro.
+            JOptionPane.showMessageDialog(this, "Erro ao gerar relatório: " + ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_itmEmprestimosAutorizadosMouseReleased
+
+    private void itmUsuariosLogadosMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_itmUsuariosLogadosMouseReleased
+        // TODO add your handling code here:
+         String title = "Listagem de Usuarios que já Logaram";
+
+        try (InputStream in = getClass().getResourceAsStream("/UsuariosLogados.jasper")) {
+            JasperPrint jasperPrint = JasperFillManager.fillReport(in, null, DbConnection.getConnection());
+
+            JasperViewer jasperViewer = new JasperViewer(jasperPrint, false);
+
+            JDialog dialog = new JDialog(this);
+            dialog.setContentPane(jasperViewer.getContentPane());
+            dialog.setSize(jasperViewer.getSize());
+            dialog.setTitle(title);
+            dialog.setModal(true);
+
+            // Centralizar o JDialog em relação à tela
+            dialog.setLocationRelativeTo(null);
+
+            dialog.setVisible(true);
+
+            // Certifique-se de fechar o JDialog após a visualização do relatório (se necessário).
+            // dialog.dispose();
+
+        } catch (IOException | JRException ex) {
+            Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, "Erro ao gerar relatório", ex);
+            // Exiba uma mensagem ao usuário informando sobre o erro.
+            JOptionPane.showMessageDialog(this, "Erro ao gerar relatório: " + ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_itmUsuariosLogadosMouseReleased
 
     /**
      * @param args the command line arguments
@@ -383,13 +766,22 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem Roles;
     private javax.swing.JMenuItem itmAutorizarEmprestimos;
+    private javax.swing.JMenuItem itmBibliotecarios;
     private javax.swing.JMenuItem itmCadastrarNovoLivro;
     private javax.swing.JMenuItem itmCadastrarNovoUsuario;
+    private javax.swing.JMenuItem itmCredencias;
     private javax.swing.JMenuItem itmEmprestimo;
+    private javax.swing.JMenuItem itmEmprestimos;
+    private javax.swing.JMenuItem itmEmprestimosAutorizados;
     private javax.swing.JMenuItem itmFecharPrograma;
     private javax.swing.JMenuItem itmHistoricoEmprestimos;
+    private javax.swing.JMenuItem itmLeitores;
+    private javax.swing.JMenuItem itmLivros;
     private javax.swing.JMenuItem itmSobre;
+    private javax.swing.JMenuItem itmUsuarios;
+    private javax.swing.JMenuItem itmUsuariosLogados;
     private javax.swing.JMenuItem jGerenciar;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
@@ -399,6 +791,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu mnuConsultar;
     private javax.swing.JMenuItem mnuConsultarLivro;
     private javax.swing.JMenuItem mnuConsultarUsuarios;
+    private javax.swing.JMenu mnuRelatório;
     private javax.swing.JMenu mnuSair;
     // End of variables declaration//GEN-END:variables
 }

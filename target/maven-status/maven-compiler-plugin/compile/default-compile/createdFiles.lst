@@ -9,6 +9,7 @@ gui\TelaControle$1.class
 gui\TelaHistoricoEmprestimos$7.class
 role\RoleDao.class
 gui\TelaCadastroUsuario$5.class
+gui\TelaPrincipal$17.class
 gui\TelaCadastroUsuario$2.class
 gui\TelaHistoricoEmprestimos.class
 gui\TelaPrincipal$2.class
@@ -42,6 +43,7 @@ gui\TelaControleLivro$4.class
 gui\TelaGerenciamentoUsuarios$7.class
 gui\TelaControle.class
 gui\TelaHistoricoEmprestimos$5.class
+gui\TelaRelatorio.class
 gui\TelaPrincipal$12.class
 repository\DbConnection.class
 gui\TelaRealizarNovoEmprestimo$5.class
@@ -54,6 +56,8 @@ gui\TelaPrincipal$9.class
 gui\TelaAutenticacao$4.class
 librarian\Librarian.class
 gui\TelaControleLivro$3.class
+gui\TelaPrincipal$24.class
+gui\TelaPrincipal$19.class
 gui\TelaPrincipal$13.class
 gui\TelaGerenciamentoUsuarios$6.class
 gui\TelaCadastroUsuario.class
@@ -67,9 +71,11 @@ user\UserDao.class
 gui\GerenciamentoCredencial$2.class
 gui\TelaPrincipal$3.class
 gui\TelaGerenciamentoUsuarios$8.class
+gui\TelaPrincipal$20.class
 gui\TelaAutenticacao$8.class
 gui\TelaPrincipal$10.class
 librarian\LibrarianDao.class
+gui\TelaRelatorio$1.class
 gui\TelaCadastrarLivro$4.class
 gui\TelaGerenciamentoUsuarios$5.class
 gui\TelaCadastrarLivro$1.class
@@ -83,6 +89,8 @@ gui\TelaControle$3.class
 entity\Entity.class
 gui\TelaAutenticacao$5.class
 gui\TelaControleLivro$5.class
+gui\TelaPrincipal$18.class
+gui\TelaPrincipal$23.class
 gui\TelaGerenciamentoLivro$4.class
 gui\TelaRealizarNovoEmprestimo$6.class
 gui\TelaControleLivro$2.class
@@ -94,9 +102,11 @@ gui\TelaPrincipal$1.class
 br\edu\ifnmg\relacionamentos\Relacionamentos.class
 gui\TelaRealizarNovoEmprestimo$8.class
 gui\TelaGerenciamentoUsuarios$3.class
+gui\TelaPrincipal$15.class
 gui\TelaCadastroUsuario$14.class
 gui\TelaCadastrarLivro$3.class
 gui\TelaGerenciamentoUsuarios.class
+gui\TelaPrincipal$22.class
 gui\GerenciamentoCredencial$3.class
 gui\TelaAutenticacao$6.class
 gui\TelaPrincipal$5.class
@@ -107,8 +117,10 @@ gui\TelaSobre$1.class
 role\Role.class
 gui\TelaControleLivro$1.class
 gui\TelaHistoricoEmprestimos$3.class
+gui\TelaPrincipal$16.class
 gui\TelaAutenticacao$7.class
 gui\TelaGerenciamentoUsuarios$2.class
+gui\TelaPrincipal$21.class
 gui\TelaSobre.class
 user\User.class
 gui\TelaCadastroUsuario$13.class

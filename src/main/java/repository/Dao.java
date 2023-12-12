@@ -15,7 +15,7 @@ import java.util.List;
  */
     public abstract class Dao<E> implements IDao<E> {
     
-    public static final String DB = "sistema";
+    public static final String DB = "mydb";
 
     @Override
     public Long save(E e) {
