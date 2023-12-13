@@ -47,16 +47,10 @@ public class TelaSobre extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        lblFotoCaio.setIcon(new javax.swing.ImageIcon("C:\\Users\\xtron\\Desktop\\TCD-POO\\resources\\foto_caio.png")); // NOI18N
-
         lblIntegrantes.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
         lblIntegrantes.setText("INTEGRANTES DO GRUPO");
 
         lblNomeCaio.setText("Caio Veloso Dias");
-
-        lblFotoPedrao.setIcon(new javax.swing.ImageIcon("C:\\Users\\xtron\\Desktop\\TCD-POO\\resources\\foto_pedrao.png")); // NOI18N
-
-        lblFotoVictor.setIcon(new javax.swing.ImageIcon("C:\\Users\\xtron\\Desktop\\TCD-POO\\resources\\foto_viteira.png")); // NOI18N
 
         lblNomePedro.setText("Pedro Henrique Braga dos Reis Oliveira");
 
@@ -115,9 +109,8 @@ public class TelaSobre extends javax.swing.JFrame {
                             .addComponent(lblFotoVictor))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(lblNomePedro)
-                                .addComponent(lblNomeCaio))
+                            .addComponent(lblNomePedro)
+                            .addComponent(lblNomeCaio)
                             .addComponent(lblNomeVictor)))
                     .addComponent(lblFotoCaio))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)

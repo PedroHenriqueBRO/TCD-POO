@@ -4,6 +4,8 @@
  */
 package gui;
 
+import Emprestimo.Emprestimo;
+import Emprestimo.EmprestimoDao;
 import credential.Credential;
 import credential.CredentialDao;
 import librarian.LibrarianDao;
@@ -185,11 +187,17 @@ public class GerenciamentoCredencial extends javax.swing.JFrame {
         String namerolebiblio="Bibliotecario";
         String nameroleadmin="Administrador";
         User usuario=new UserDao().findById(Userid);
+       for(Emprestimo e:new EmprestimoDao().findAll()){
+            if(e.getLeitor().getId()==Userid){
+                new EmprestimoDao().delete(e.getId());
+            }
+        }
         if(usuario.getRole().getName().equals(nameroleleitor)){
             new ReaderDao().delete(Userid);
         }else{
             new LibrarianDao().delete(Userid);
         }
+        
         new CredentialDao().delete(Userid);
         new UserDao().delete(Userid);
         dispose();

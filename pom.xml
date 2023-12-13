@@ -25,5 +25,15 @@
             <version>6.20.6</version>
         </dependency>
     </dependencies>
-    
+    <name>TCD POO #1 Pedro Henrique Braga #2 Caio Dias #3 Victor Pereira</name>
+    <description>TCD da disciplina de POO
+
+-Criações de entidades para suas utlizações em um sistema de empréstimo de livros.
+-Elaboração de GUI
+-Uso de banco de dados mysql para armazenamento de informações das entidades do sistema
+-Uso de estrutura DAO.
+
+ #1 Pedro Henrique Braga 
+#2 Caio Dias 
+#3 Victor Pereira</description>
 </project>

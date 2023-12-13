@@ -183,7 +183,7 @@ jScrollPane1.setViewportView(listHistorico);
 listHistorico = new javax.swing.JList<>();
 
 listHistorico.setModel(new javax.swing.AbstractListModel<String>() {
-  
+    
     public int getSize() { return strings2.length; }
     public String getElementAt(int i) { return strings2[i]; }
 });

@@ -14,7 +14,7 @@ import user.User;
  */
 public class Reader extends User{
     
- private String name;
+    private String name;
     private String email;
     private LocalDate birthdate;
     

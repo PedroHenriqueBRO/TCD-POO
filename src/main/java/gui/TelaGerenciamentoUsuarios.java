@@ -4,6 +4,7 @@
  */
 package gui;
 
+import Emprestimo.Emprestimo;
 import Emprestimo.EmprestimoDao;
 import credential.CredentialDao;
 import java.awt.Label;
@@ -343,15 +344,17 @@ public class TelaGerenciamentoUsuarios extends javax.swing.JDialog {
         // TODO add your handling code here:
         
         
-        
+          for(Emprestimo e:new EmprestimoDao().findAll()){
+            if(e.getLeitor().getId()==Userid){
+                new EmprestimoDao().delete(e.getId());
+            }
+        }
         new LibrarianDao().delete(user1.getId());
         
         new ReaderDao().delete(user1.getId());
         
         new CredentialDao().delete(user1.getId());
-       
-        new EmprestimoDao().delete(user1.getId());
-           
+     
         new UserDao().delete(user1.getId());
         
        dispose();

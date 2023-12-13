@@ -141,7 +141,11 @@ jScrollPane2.setViewportView(lstLivrosDisponiveis);
             }
         });
 
-        txtSenha.setText("jPasswordField1");
+        txtSenha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtSenhaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -322,6 +326,10 @@ jScrollPane2.setViewportView(lstLivrosDisponiveis);
         
         
     }//GEN-LAST:event_btnAutorizarMouseReleased
+
+    private void txtSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSenhaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtSenhaActionPerformed
 
     
     /**

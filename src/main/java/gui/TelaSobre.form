@@ -97,10 +97,8 @@
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="lblNomePedro" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lblNomeCaio" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
+                              <Component id="lblNomePedro" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblNomeCaio" min="-2" max="-2" attributes="0"/>
                               <Component id="lblNomeVictor" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -115,11 +113,6 @@
       </Layout>
       <SubComponents>
         <Component class="javax.swing.JLabel" name="lblFotoCaio">
-          <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\xtron\Desktop\TCD-POO\resources\foto_caio.png"/>
-            </Property>
-          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lblIntegrantes">
           <Properties>
@@ -135,18 +128,8 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lblFotoPedrao">
-          <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\xtron\Desktop\TCD-POO\resources\foto_pedrao.png"/>
-            </Property>
-          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lblFotoVictor">
-          <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\xtron\Desktop\TCD-POO\resources\foto_viteira.png"/>
-            </Property>
-          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lblNomePedro">
           <Properties>
