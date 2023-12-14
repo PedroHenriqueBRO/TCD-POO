@@ -202,7 +202,8 @@ public class TelaGerenciamentoLivro extends javax.swing.JFrame {
         }
         new BookDao().delete(livro.getId());
         dispose();
-        TelaPrincipal newTela = new TelaPrincipal();
+        TelaPrincipal newTela = new TelaPrincipal(nameRole);
+        newTela.setUserid(Userid);
         newTela.setVisible(true);
        
     }//GEN-LAST:event_btnExcluirMouseReleased

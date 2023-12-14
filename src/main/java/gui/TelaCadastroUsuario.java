@@ -358,6 +358,7 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
            new CredentialDao().save(c1);
            dispose();
           TelaPrincipal newTela = new TelaPrincipal(nameRole);
+          newTela.setUserid(Userid);
           newTela.setVisible(true);
         }
         catch(Exception e){

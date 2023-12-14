@@ -155,9 +155,6 @@
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jid">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="jLabel4"/>
-          </Properties>
         </Component>
       </SubComponents>
     </Container>

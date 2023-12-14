@@ -80,6 +80,7 @@ gui\TelaCadastrarLivro$4.class
 gui\TelaGerenciamentoUsuarios$5.class
 gui\TelaCadastrarLivro$1.class
 gui\TelaCadastroUsuario$11.class
+gui\TelaRealizarNovoEmprestimo$9.class
 credential\Credential.class
 gui\TelaAutorizarEmprestimo$2.class
 gui\TelaCadastroUsuario$9.class
